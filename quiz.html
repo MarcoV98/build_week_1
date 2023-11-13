@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Epicode Test">
+    <link rel="stylesheet" href="asset/css/style.css">
     <title>Epicode Test</title>
 </head>
 <body>
@@ -13,11 +14,18 @@
 
     
     <main>
+
+      <div id="pre-start">
+        <input type="button" value="Start" id="startBtn">
+        <!--scegliere difficoltà -->
+        <label for="nDomande"> Quante domande vuoi?</label>
+        <input type="number" id="nDomande" >
+      </div>
+
+      <div id="contenitore-domande" class="invs">
         <div id="timer"> 
-            <!-- inserire timer qui--> 
+          <!-- inserire timer qui--> 
         </div>
-
-
         <h2>placeholder</h2>
 
         <div id="contenitore-risposte">
@@ -34,10 +42,22 @@
             <input type="radio" id="risposta4">
         </div>
 
-        <h3>
+        <input type="button" id="prossimaBtn" value="next">
+
+        <h3 id="contatoreDomande">
             Question: numeroRisposta / NumeroDomanda
         </h3>
-    </main>
+      </div>
 
+      <div id="endScreen" class="invs">
+
+      </div>
+
+
+
+
+
+    </main>
+  <script src="asset/js/script.js"></script>
 </body>
 </html>
