@@ -1,3 +1,163 @@
-.invs{
-  opacity: 0;
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
+  
+
+
+body{
+    background: url(/asset/bg.jpg) center center/cover no-repeat fixed;
+    font-family: 'Outfit', sans-serif;
+}
+
+header{
+    margin-left: 5.5rem;
+}
+
+header img {
+    width: 155px;
+    margin-top: 2rem;
+    margin-left: 4.5rem;
+    
+}
+
+main{
+    
+    margin-left: 10rem;
+    
+    
+}
+
+h1{
+    line-height: 56px;
+    font-weight: 400;
+    color: white;
+    font-size: 75px;
+    margin-top: 5rem;
+}
+
+h1 span{
+    font-weight: 700 bold;
+    color: white;
+    font-weight: bold;
+      
+}
+
+h2{
+    color: #d20094;
+    font-size: 25px;
+    margin-top: 3rem;
+}
+
+p{
+    color: white;
+    
+}
+
+ul{
+    color: white;
+    list-style: disc;
+    margin-left: 16px;
+    line-height: 25px;
+    margin-top: 40px;
+}
+
+b{
+    font-weight: 700;
+}
+
+.Container{
+    display: flex;
+    align-items: center;
+    
+}
+
+.check{
+
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+
+.check input{
+    
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+}
+
+.check span{
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border: 3px solid #fff;
+    cursor: pointer;
+}
+
+.check span::after{
+    content: "";
+    position: absolute;
+    left: 7px;
+    width: 0;
+    bottom: 2px;
+    height: 0;
+    border: solid #d20094;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+    opacity: 0;
+}
+
+input:checked ~ span::after{
+    width: 12px;
+    height: 21px;
+    opacity: 1;
+    
+}
+
+
+
+
+
+
+.btnProceed{
+    margin-left: 250px;
+    width: 14rem;
+    height: 3.5rem;
+    display: flex;
+
+
+}
+
+.btnProceed input{
+    width: 100%;
+    height: 100%;
+    background-color: #00ffff;
+    border: transparent;
+    box-shadow: 0px 0px 13px 4px #00ffff;
+    font-size: 23px;
+    text-transform: uppercase;
+    font-weight: bold;
+    
+    cursor: pointer;
+}
+ 
+
+input:active {
+        position:relative;
+        top:2px;
+    }
+
+
+label{
+    color: white;
+    margin-left: 15px;
+}
+
+footer{
+    margin-left: 8rem;
+    margin-top: 8rem;
 }
