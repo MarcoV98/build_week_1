@@ -5,6 +5,7 @@
 
 body{
     background: url(/asset/bg.jpg) center center/cover no-repeat fixed;
+    font-family: 'Outfit', sans-serif;
 }
 
 header{
@@ -21,7 +22,7 @@ header img {
 main{
     
     margin-left: 10rem;
-    font-family: 'Outfit', sans-serif;
+    
     
 }
 
@@ -140,7 +141,7 @@ input:checked ~ span::after{
     font-size: 23px;
     text-transform: uppercase;
     font-weight: bold;
-    font-family: 'Outfit', sans-serif;
+    
     cursor: pointer;
 }
  
