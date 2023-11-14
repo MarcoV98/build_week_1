@@ -408,8 +408,42 @@ function endScreen(){
   testoRecapSbagliate.textContent = " "
 
   // % domande sbagliate
+
   testoRecapSbagliate.innerHTML += arrayRisposteSbagliate.length + " / " + domande.length
 }
+
+const data = {
+  // labels: [
+  //   'Red',
+  //   'Blue',
+  //   'Yellow'
+  // ],
+  datasets: [{
+    label: 'My First Dataset',
+    data: [300, 50, 100],
+    backgroundColor: [
+      'rgb(255, 99, 132)',
+      'rgb(54, 162, 235)',
+      'rgb(255, 205, 86)'
+    ],
+    hoverOffset: 4,
+    cutout: 280,
+  }]
+};
+
+const ctx = document.getElementById('myChart')
+
+// ctx.style.boxShadow= "12px 21px 24px 0px rgba(0, 0, 0, 0.21)"
+ctx.style.boxShadow= "rgb(38, 57, 77) 0px 20px 30px -10px"
+ctx.style.borderRadius="1000px"
+
+new Chart(ctx, {
+  type: 'doughnut',
+  data: data,
+});
+
+
+
 
 
 
