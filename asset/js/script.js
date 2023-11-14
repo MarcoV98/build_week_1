@@ -186,8 +186,7 @@ function startTimer(){
     timerTesto.innerHTML = tempoTrascorso
     let secondi = durataTimer - tempoTrascorso
     console.log(secondi)
-
-    creazioneCiambella(timer, 60)
+    // creazioneCiambella(timer, 60)
 
     if(secondi <= 0){
       clearInterval(timer)
@@ -417,8 +416,6 @@ function endScreen(){
 
   creazioneCiambella(arrayRisposteCorrette.length , arrayRisposteSbagliate.length)
 }
-
-
 
 function creazioneCiambella(data1, data2){
   const data = {
