@@ -1,7 +1,9 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
   
-
+.invs{
+  opacity: 0;
+}
 
 body{
     background: url(/asset/bg.jpg) center center/cover no-repeat fixed;
