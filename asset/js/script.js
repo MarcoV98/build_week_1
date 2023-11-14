@@ -186,6 +186,7 @@ function startTimer(){
     timerTesto.innerHTML = tempoTrascorso
     let secondi = durataTimer - tempoTrascorso
     console.log(secondi)
+
     // creazioneCiambella(timer, 60)
 
     if(secondi <= 0){
