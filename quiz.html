@@ -18,13 +18,25 @@
       <div id="pre-start">
         <input type="button" value="Start" id="startBtn">
         <!--scegliere difficoltà -->
+
+        <div id="sceltaDifficolta">
+          <label for="easy">Easy</label>
+          <input type="radio" name="difficoltà" value="easy">
+          <label for="medium">Medium</label>
+          <input type="radio" name="difficoltà" value="medium">
+          <label for="hard">Hard</label>
+          <input type="radio" name="difficoltà" value="hard">
+        </div>
+
+
+
         <label for="nDomande"> Quante domande vuoi?</label>
         <input type="number" id="nDomande" >
       </div>
 
       <div id="contenitore-domande" class="invs">
         <div id="timer"> 
-          <!-- inserire timer qui--> 
+          <p id="timerTesto"></p> 
         </div>
         <h2>placeholder</h2>
 
@@ -52,7 +64,6 @@
 
 
       <div id="endScreen" class="invs">
-        
           <h1>Results</h1>
           <p>The summary of your answers:</p>
 

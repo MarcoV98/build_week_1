@@ -92,7 +92,61 @@ const questions = [
   {
     category: "Science: Computers",
     type: "multiple",
-    difficulty: "easy",
+    difficulty: "medium",
+    question:
+      "Which programming language shares its name with an island in Indonesia?",
+    correct_answer: "Java",
+    incorrect_answers: ["Python", "C", "Jakarta"],
+  },
+  {
+    category: "Science: Computers",
+    type: "multiple",
+    difficulty: "medium",
+    question:
+      "Which programming language shares its name with an island in Indonesia?",
+    correct_answer: "Java",
+    incorrect_answers: ["Python", "C", "Jakarta"],
+  },
+  {
+    category: "Science: Computers",
+    type: "multiple",
+    difficulty: "medium",
+    question:
+      "Which programming language shares its name with an island in Indonesia?",
+    correct_answer: "Java",
+    incorrect_answers: ["Python", "C", "Jakarta"],
+  },
+  {
+    category: "Science: Computers",
+    type: "multiple",
+    difficulty: "medium",
+    question:
+      "Which programming language shares its name with an island in Indonesia?",
+    correct_answer: "Java",
+    incorrect_answers: ["Python", "C", "Jakarta"],
+  },
+  {
+    category: "Science: Computers",
+    type: "multiple",
+    difficulty: "hard",
+    question:
+      "Which programming language shares its name with an island in Indonesia?",
+    correct_answer: "Java",
+    incorrect_answers: ["Python", "C", "Jakarta"],
+  },
+  {
+    category: "Science: Computers",
+    type: "multiple",
+    difficulty: "hard",
+    question:
+      "Which programming language shares its name with an island in Indonesia?",
+    correct_answer: "Java",
+    incorrect_answers: ["Python", "C", "Jakarta"],
+  },
+  {
+    category: "Science: Computers",
+    type: "multiple",
+    difficulty: "hard",
     question:
       "Which programming language shares its name with an island in Indonesia?",
     correct_answer: "Java",
@@ -112,20 +166,78 @@ let gameOver = false;
 let startBtn = document.getElementById("startBtn")
 startBtn.addEventListener("click",inizioDomande)
 
+//timer 
+let timer;
+//timer(da rendere meno console.log)
+
+function startTimer(){
+  let durataTimer = 10
+  let tempoTrascorso  = 0
+  let timerTesto = document.getElementById("timerTesto")
+
+  if( tempoTrascorso !== 0){
+    clearInterval(timer)
+    tempoTrascorso = 0;
+    timerTesto.innerHTML = " "
+  }
+
+  function tempoChePassa(){ 
+    tempoTrascorso++
+    timerTesto.innerHTML = tempoTrascorso
+    let secondi = durataTimer - tempoTrascorso
+    console.log(secondi)
+
+    if(secondi <= 0){
+      clearInterval(timer)
+      console.log("timer scaduto")
+      questionNumber();
+      nextQuestion(domande)
+    }
+  }
+  console.log(tempoTrascorso)
+  timer = setInterval(tempoChePassa,1000);
+}
+
 //funzione preparazione array domande.///////////////////////
 
 //array è l'array di domande, num è il quantitativo preso poi con un input.number
 function preparazioneDomande (array,num){
+  //function separata?
+  let sceltaDifficoltà = document.querySelectorAll("#sceltaDifficolta input")
+
+  let difficoltà
+  sceltaDifficoltà.forEach(element => {
+    console.log(element.checked)
+    if(element.checked){
+      difficoltà = element.value
+      console.log(difficoltà)
+    }
+  });
+
+
   if (num > array.length) {
     console.error("Il numero richiesto di domande supera la lunghezza dell'array delle domande.");
     return array;  // ritorna tutto l'array di domande disponibili
   }
+
   let domande = []
 
+  // array domande - difficoltà 
+  let domandeDifficoltà = []
+
+  array.forEach(element => {
+    if(element.difficulty == difficoltà){
+      domandeDifficoltà.push(element)
+    }
+  });
+
+
   while (domande.length < num) {
-    let randomNum = Math.floor(Math.random() * array.length);
-    if (!domande.includes(array[randomNum])) {
-      domande.push(array[randomNum]);
+    let randomNum = Math.floor(Math.random() * domandeDifficoltà.length);
+
+  // prendere domande random in base alla difficoltà
+    if (!domande.includes(domandeDifficoltà[randomNum])) {
+      domande.push(domandeDifficoltà[randomNum]);
     }
   }
   return domande;
@@ -174,9 +286,9 @@ function nextQuestion(array){
   questionCounter.textContent = ""
   //counter è il numero di domande attuali
   questionCounter.innerHTML = counter + " / " + domande.length
+  clearInterval(timer);
 
   if(counter<array.length && !gameOver){
-
     //settiamo  testo della domanda 
     testoDomanda = document.querySelector("h2")
     testoDomanda.innerText = array[counter].question;
@@ -215,7 +327,10 @@ function nextQuestion(array){
         inputs[i].style.opacity = "1";
       }
     }
+
+    startTimer();
     return risposte
+
   }else{
     console.log("gameOver")
     gameOver = true;
@@ -257,6 +372,10 @@ function checkIfRight() {
   }
 }
 
+function questionNumber(){
+  return counter++;
+ }
+
 //funzione pulsante next
 let nextBtn = document.getElementById("prossimaBtn");
 nextBtn.addEventListener("click",function(){
@@ -290,6 +409,7 @@ function endScreen(){
 
   // % domande sbagliate
   testoRecapSbagliate.innerHTML += arrayRisposteSbagliate.length + " / " + domande.length
-
-
 }
+
+
+
