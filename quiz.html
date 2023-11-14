@@ -29,17 +29,17 @@
         <h2>placeholder</h2>
 
         <div id="contenitore-risposte">
-            <label for="risposta1">placeholder</label>
-            <input type="radio" id="risposta1">
+          <label for="A"></label>
+          <input type="radio" name="risposta" value="0">
     
-            <label for="risposta2">placeholder</label>
-            <input type="radio" id="risposta2">
+          <label for="B"></label>
+          <input type="radio" name="risposta" value="1">
     
-            <label for="risposta3">placeholder</label>
-            <input type="radio" id="risposta3">
+          <label for="C"></label>
+          <input type="radio" name="risposta" value="2">
     
-            <label for="risposta4">placeholder</label>
-            <input type="radio" id="risposta4">
+          <label for="D"></label>
+          <input type="radio" name="risposta" value="3">
         </div>
 
         <input type="button" id="prossimaBtn" value="next">
@@ -49,13 +49,26 @@
         </h3>
       </div>
 
+
+
       <div id="endScreen" class="invs">
+        
+          <h1>Results</h1>
+          <p>The summary of your answers:</p>
 
+
+        <div>
+          <h2>Correct</h2>
+          <p>Correct%</p>
+          <p id="testoRecapCorrette">Domande totali corrette /domande totali</p>
+        </div>
+        <div>
+          <h2>Wrong</h2>
+          <p>Wrong%</p>
+          <p id="testoRecapSbagliate">Domande totali sbagliate /domande totali</p>
+        </div>
+         
       </div>
-
-
-
-
 
     </main>
   <script src="asset/js/script.js"></script>

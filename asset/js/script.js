@@ -103,6 +103,7 @@ const questions = [
 // variabili globali
 let arrayRisposteCorrette = [];
 let arrayRisposteSbagliate = [];
+let risposte = [];
 
 let counter = 0;
 let gameOver = false;
@@ -127,31 +128,34 @@ function preparazioneDomande (array,num){
       domande.push(array[randomNum]);
     }
   }
-  console.log(domande);
   return domande;
 }
 
 //funzione inizio delle domande
 
 function inizioDomande(){
-  //se non è stato stato segnato niente in quante domande manda una notifica a riguardo.
+  let preStart = document.getElementById("pre-start")
+
+   //check quante domande vuoi (in realtà penso di modificarlo in base alla difficoltà)
   let value = checkValue();
-  
-  if(value < 0){
-    console.log("inserisci un numero valido")
-    return
-  }
+  if(value !== ""){
+    
+  //rendi il pre-start invisibile
+    preStart.style.opacity = 0;
 
   //rendere il contenitore visibile
   let contenitore = document.getElementById("contenitore-domande")
   contenitore.style.opacity = "1"
 
-  //check quante domande vuoi (in realtà penso di modificarlo in base alla difficoltà)
-
   //creazione array Domande
   domande = preparazioneDomande(questions,value)
   //prossima domanda
   nextQuestion(domande)
+  return
+  }
+   //se non è stato stato segnato niente in quante domande manda una notifica a riguardo.
+  console.log("inserisci un numero valido")
+  return
 }
 
 //funzione per avere un tot definito dall'utente di domande (da cambiare probabilmente in base alla difficoltà)
@@ -162,9 +166,6 @@ function checkValue(){
 
 //funzione next question per "settare" la nuova domanda prende l'array domande come valore.
 function nextQuestion(array){
-  console.log(array.length)
-
-
   //prendiamo il bottone NEXT
   let nextBtn = document.getElementById("prossimaBtn")
 
@@ -174,7 +175,6 @@ function nextQuestion(array){
   //counter è il numero di domande attuali
   questionCounter.innerHTML = counter + " / " + domande.length
 
-
   if(counter<array.length && !gameOver){
 
     //settiamo  testo della domanda 
@@ -182,18 +182,18 @@ function nextQuestion(array){
     testoDomanda.innerText = array[counter].question;
 
     //settiamo risposte 
-    let risposte = []
-    let risposteSbagliate = []
-    risposteSbagliate.push(domande.incorrect_answers)
-    console.log(risposteSbagliate)
-
-
+    risposte = []
+ 
+    //push domande positive
     risposte.push(array[counter].correct_answer)
-    for(let i = 0; i< risposteSbagliate.length;i++){
-      risposte.push(array[counter].incorrect_answers)
+
+    //push domande negative
+    for(let i = 0; i < array[counter].incorrect_answers.length ;i++){
+      risposte.push(array[counter].incorrect_answers[i])
     }
 
-    console.log(risposte)
+    //qui ci starebbe uno shuffle
+    shuffleArray(risposte);
 
     // prendiamo le varie label 
     let labelRisposteArray = document.querySelectorAll("#contenitore-risposte label")
@@ -215,34 +215,45 @@ function nextQuestion(array){
         inputs[i].style.opacity = "1";
       }
     }
+    return risposte
   }else{
     console.log("gameOver")
     gameOver = true;
-    // endScreen(); endscreen
+    endScreen();
   }
 }
 
-//check se la domanda è giusta
-function checkIfRight(){
+function shuffleArray(array){
+  for (var i = array.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+  return array;
+}
 
-  if(!gameOver){
-    let answers = document.querySelectorAll("#risposte input")
+function checkIfRight() {
+  if (!gameOver) {
+    let answers = document.querySelectorAll("#contenitore-risposte input");
     let rispostaCorretta = domande[counter].correct_answer;
+    let rispostaCorrettaIndex = risposte.indexOf(rispostaCorretta)
+    let rispostaData = "";
 
-    answers.forEach(answer =>{
-      if(answer.checked == true){
+    answers.forEach(answer => {
+      if (answer.checked) {
         rispostaData = answer.value;
       }
-      if(rispostaCorretta == rispostaData){
-        // arrayRisposteCorrette.push([domande[counter],domande[counter].correct_answer])
-        console.log("daje roma")
-      }
-      else{
-        // arrayRisposteSbagliate.push([domande[counter], domande[counter].risposte[rispostaData]])
-        console.log("daje lazio")
-      }
     })
-    return counter++
+    if (rispostaData == rispostaCorrettaIndex) {
+      arrayRisposteCorrette.push([domande[counter].question, domande[counter].correct_answer])
+      console.log("Risposta corretta");
+    } else {
+      arrayRisposteSbagliate.push([domande[counter]])
+      //per mostrare la risposta data devo smanettare 
+      console.log("Risposta sbagliata");
+    }
+    counter++; // Incrementa il contatore delle domande
   }
 }
 
@@ -257,19 +268,28 @@ nextBtn.addEventListener("click",function(){
 function endScreen(){
   let divRisposte = document.getElementById("contenitore-domande")
   let endScreen = document.getElementById("endScreen")
+
   //estetica
-  divRisposte.style.opacity=0;
-  endScreen.style.opacity=1;
+  divRisposte.style.opacity="0";
+  endScreen.style.opacity="1";
 
   console.log(arrayRisposteCorrette)
-
   //numero domande totale /numero risposte corrette
 
-  let testoRecap = document.getElementById("contatoreDomande")
+  let testoRecapCorrette = document.getElementById("testoRecapCorrette")
 
-  testoRecap.textContent= ""
+  testoRecapCorrette.textContent = " "
 
-  testoRecap.innerHTML += arrayRisposteCorrette.lenght + " / " + domande.length
+  // % domande corrette
+  testoRecapCorrette.innerHTML += arrayRisposteCorrette.length + " / " + domande.length
+
+
+  let testoRecapSbagliate = document.getElementById("testoRecapSbagliate")
+
+  testoRecapSbagliate.textContent = " "
+
+  // % domande sbagliate
+  testoRecapSbagliate.innerHTML += arrayRisposteSbagliate.length + " / " + domande.length
+
+
 }
-
-
