@@ -187,6 +187,8 @@ function startTimer(){
     let secondi = durataTimer - tempoTrascorso
     console.log(secondi)
 
+    creazioneCiambella(timer, 60)
+
     if(secondi <= 0){
       clearInterval(timer)
       console.log("timer scaduto")
@@ -198,8 +200,6 @@ function startTimer(){
   timer = setInterval(tempoChePassa,1000);
 
   creazioneCiambella(timer, 60)
-
-
 }
 
 //funzione preparazione array domande.///////////////////////
