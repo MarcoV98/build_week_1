@@ -165,6 +165,7 @@ let gameOver = false;
 let startBtn = document.getElementById("startBtn")
 startBtn.addEventListener("click",inizioDomande)
 
+
 // //timer 
 let timer;
 
@@ -194,16 +195,57 @@ function startTimer() {
   timer = setInterval(tempoChePassa, 1000);
 }
 
+let timeLeft = 60;
+
+function isTimeLeft() {
+  return timeLeft > -1;
+}
+
+function runTimer(timerElement) {
+    const timerCircle = timerElement.querySelector('svg > circle + circle');
+    timerElement.classList.add('animatable');
+    timerCircle.style.strokeDashoffset = 1;
+
+    let countdownTimer = setInterval(function(){
+        if(isTimeLeft()){
+            const timeRemaining = timeLeft--;
+            const normalizedTime = (60 - timeRemaining) / 60;
+      // for clockwise animation
+      // const normalizedTime = (timeRemaining - 60) / 60;
+            timerCircle.style.strokeDashoffset = normalizedTime;
+      // timer.innerHTML = timeRemaining;
+        } else {
+            clearInterval(countdownTimer);
+            timerElement.classList.remove('animatable');
+        }
+    }, 1000);
+}
+
+runTimer(document.querySelector('.timer'));
+
+
+
+
+
+
+
+
+
 function selectRadio(i) {
   let radioBtn = document.getElementsByClassName("checkRadio")[i];
   console.log(document.getElementsByClassName("checkRadio"))
 
   let labelRadioBtnArray = Array.from(document.getElementsByClassName("checkRadioLabel"))
 
-  console.log(labelRadioBtnArray)
+
+  //se il nome è uguale non illuminarti? 
+  console.log(labelRadioBtnArray[i])
+  
+
   labelRadioBtnArray.forEach(label => {
     label.classList.remove("checkRadioChecked")
   });
+
 
   radioBtn.checked = true;
   labelRadioBtnArray[i].classList.add("checkRadioChecked")
@@ -301,14 +343,18 @@ function nextQuestion(array){
   //prendiamo il contatore domande e modifichiamo il testo in base alle domande
   let questionCounter = document.getElementById("contatoreDomande")
   questionCounter.textContent = ""
+
   //counter è il numero di domande attuali
   questionCounter.innerHTML = counter + " / " + domande.length
   clearInterval(timer);
 
   if(counter<array.length && !gameOver){
     //settiamo  testo della domanda 
-    testoDomanda = document.querySelector("h2")
-    testoDomanda.innerText = array[counter].question;
+    testoDomanda = document.getElementById("testoDomanda")
+
+    testoDomanda.innerHTML = array[counter].question;
+
+    console.log(testoDomanda)
 
     //settiamo risposte 
     risposte = []
@@ -399,6 +445,15 @@ nextBtn.addEventListener("click",function(){
   nextQuestion(domande)
 })
 
+// convertire in %
+
+function convertiInPercentuale(numero) {
+  // Moltiplica per 100 per ottenere la percentuale e aggiungi il simbolo percentuale
+  var percentuale = numero * 100 + "%";
+  return percentuale;
+}
+
+
 //funzione endscreen 
 function endScreen(){
   let divRisposte = document.getElementById("contenitore-domande")
@@ -416,10 +471,19 @@ function endScreen(){
   testoRecapCorrette.textContent = " "
 
   // % domande corrette
+  // i numeri che mi servono
+  corrette100 = convertiInPercentuale(arrayRisposteCorrette.length)
+  let testo100 = document.getElementById("testoCorrette")
+
+  testo100.innerHTML= corrette100;
+
+  // un modo per vedere %
+
+
   testoRecapCorrette.innerHTML += arrayRisposteCorrette.length + " / " + domande.length
 
 
-  let testoRecapSbagliate = document.getElementById("testoRecapSbagliate")
+  // let testoRecapSbagliate = document.getElementById("testoRecapSbagliate")
 
   testoRecapSbagliate.textContent = " "
 
@@ -428,6 +492,11 @@ function endScreen(){
 
   creazioneCiambella(arrayRisposteCorrette.length , arrayRisposteSbagliate.length)
 }
+
+
+
+
+
 
 function creazioneCiambella(data1, data2){
   const data = {

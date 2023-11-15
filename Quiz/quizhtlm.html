@@ -19,7 +19,7 @@
     <main>
       <div id="pre-start">
         <!--scegliere difficoltà -->
-        <h1>Scegli numero domande e difficoltà</h1>
+        <h1>Choose your difficulty</h1>
         
         <div id="sceltaDifficolta">
           <label for="easy" class="checkRadioLabel"  onclick="selectRadio(0)">Easy</label>
@@ -33,27 +33,50 @@
 
 
         <input type="number" id="nDomande" >
-        <input type="button" value="Start" id="startBtn">
+
+        <div id="sceltaDomande">
+          <label for="5" class="checkRadioLabel"  onclick="selectRadio(3)">5</label>
+          <input type="radio" class="checkRadio" name="numDomande" value="5">
+          <label for="7" class="checkRadioLabel" onclick="selectRadio(4)">7</label>
+          <input type="radio" class="checkRadio" name="numDomande" value="7">
+          <label for="10" class="checkRadioLabel" onclick="selectRadio(5)">10</label>
+          <input type="radio" class="checkRadio" name="numDomande" value="10">
+        </div>
+
+
+
+        <input type="button" id="startBtn" value="Start">
         
       </div>
-
       <div id="contenitore-domande" class="invs">
+
         <div id="timer"> 
-          <p id="timerTesto"></p> 
+          <!-- <p id="timerTesto"></p>  -->
+          <h2>Time Left</h2>
+          <div class="timer animatable">
+            <svg>
+              <circle cx="50%" cy="50%" r="90"/>
+              <circle cx="50%" cy="50%" r="90" pathLength="1" />
+              <text x="100" y="100" id="timerTesto" text-anchor="middle"><tspan id="timeLeft"></tspan></text>
+              <text x="100" y="120" text-anchor="middle">seconds</text>
+            </svg>
+          </div>
         </div>
-        <h2>placeholder</h2>
+
+
+        <h2 id="testoDomanda">placeholder</h2>
 
         <div id="contenitore-risposte">
-          <label for="A" class="checkRadioLabel" onclick="selectRadio(3)" ></label>
+          <label for="A" class="checkRadioLabel" onclick="selectRadio(6)" ></label>
           <input type="radio" name="risposta" class="checkRadio" value="0">
     
-          <label for="B" class="checkRadioLabel" onclick="selectRadio(4)"></label>
+          <label for="B" class="checkRadioLabel" onclick="selectRadio(7)"></label>
           <input type="radio" name="risposta" class="checkRadio" value="1">
     
-          <label for="C" class="checkRadioLabel" onclick="selectRadio(5)"></label>
+          <label for="C" class="checkRadioLabel" onclick="selectRadio(8)"></label>
           <input type="radio" name="risposta" class="checkRadio" value="2">
     
-          <label for="D" class="checkRadioLabel" onclick="selectRadio(6)"></label>
+          <label for="D" class="checkRadioLabel" onclick="selectRadio(10)"></label>
           <input type="radio" name="risposta" class="checkRadio" value="3">
         </div>
 
@@ -70,13 +93,13 @@
           <h1>Results</h1>
           <p>The summary of your answers:</p>
         <div>
-          <h2>Correct</h2>
-          <p>Correct%</p>
+          <h2 >Correct</h2>
+          <p id="testoCorrette">Correct%</p>
           <p id="testoRecapCorrette">Domande totali corrette /domande totali</p>
         </div>
         <div>
           <h2>Wrong</h2>
-          <p>Wrong%</p>
+          <p id="testo%sbagliate">Wrong%</p>
           <p id="testoRecapSbagliate">Domande totali sbagliate /domande totali</p>
         </div>
 
