@@ -162,16 +162,8 @@ footer{
     margin-top: 6rem;
 }
 
-.team{
-    display: flex;
-    justify-content: center;
-    margin-top: 58px;
-}
 
 
 
 
-.arrows svg :hover {
-    fill: #00ffff;
-}
 
