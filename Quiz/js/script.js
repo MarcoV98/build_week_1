@@ -90,6 +90,96 @@ const questions = [
   },
   {
     category: "Science: Computers",
+    type: "boolean",
+    difficulty: "easy",
+    question: "Linux was first created as an alternative to Windows XP.",
+    correct_answer: "False",
+    incorrect_answers: ["True"],
+  },
+  {
+    category: "Science: Computers",
+    type: "boolean",
+    difficulty: "easy",
+    question: "Linux was first created as an alternative to Windows XP.",
+    correct_answer: "False",
+    incorrect_answers: ["True"],
+  },
+  {
+    category: "Science: Computers",
+    type: "boolean",
+    difficulty: "easy",
+    question: "Linux was first created as an alternative to Windows XP.",
+    correct_answer: "False",
+    incorrect_answers: ["True"],
+  },
+  {
+    category: "Science: Computers",
+    type: "boolean",
+    difficulty: "easy",
+    question: "Linux was first created as an alternative to Windows XP.",
+    correct_answer: "False",
+    incorrect_answers: ["True"],
+  },
+  {
+    category: "Science: Computers",
+    type: "boolean",
+    difficulty: "easy",
+    question: "Linux was first created as an alternative to Windows XP.",
+    correct_answer: "False",
+    incorrect_answers: ["True"],
+  },
+  {
+    category: "Science: Computers",
+    type: "boolean",
+    difficulty: "easy",
+    question: "Linux was first created as an alternative to Windows XP.",
+    correct_answer: "False",
+    incorrect_answers: ["True"],
+  },
+  {
+    category: "Science: Computers",
+    type: "boolean",
+    difficulty: "easy",
+    question: "Linux was first created as an alternative to Windows XP.",
+    correct_answer: "False",
+    incorrect_answers: ["True"],
+  },
+  {
+    category: "Science: Computers",
+    type: "boolean",
+    difficulty: "easy",
+    question: "Linux was first created as an alternative to Windows XP.",
+    correct_answer: "False",
+    incorrect_answers: ["True"],
+  },
+  {
+    category: "Science: Computers",
+    type: "boolean",
+    difficulty: "easy",
+    question: "Linux was first created as an alternative to Windows XP.",
+    correct_answer: "False",
+    incorrect_answers: ["True"],
+  },
+  {
+    category: "Science: Computers",
+    type: "multiple",
+    difficulty: "medium",
+    question:
+      "Which programming language shares its name with an island in Indonesia?",
+    correct_answer: "Java",
+    incorrect_answers: ["Python", "C", "Jakarta"],
+  },
+  {
+    category: "Science: Computers",
+    type: "multiple",
+    difficulty: "medium",
+    question:
+      "Which programming language shares its name with an island in Indonesia?",
+    correct_answer: "Java",
+    incorrect_answers: ["Python", "C", "Jakarta"],
+  },
+  {
+    category: "Science: Computers",
     type: "multiple",
     difficulty: "medium",
     question:
@@ -119,6 +209,114 @@ const questions = [
     category: "Science: Computers",
     type: "multiple",
     difficulty: "medium",
+    question:
+      "Which programming language shares its name with an island in Indonesia?",
+    correct_answer: "Java",
+    incorrect_answers: ["Python", "C", "Jakarta"],
+  },
+  {
+    category: "Science: Computers",
+    type: "multiple",
+    difficulty: "medium",
+    question:
+      "Which programming language shares its name with an island in Indonesia?",
+    correct_answer: "Java",
+    incorrect_answers: ["Python", "C", "Jakarta"],
+  },
+  {
+    category: "Science: Computers",
+    type: "multiple",
+    difficulty: "medium",
+    question:
+      "Which programming language shares its name with an island in Indonesia?",
+    correct_answer: "Java",
+    incorrect_answers: ["Python", "C", "Jakarta"],
+  },
+  {
+    category: "Science: Computers",
+    type: "multiple",
+    difficulty: "medium",
+    question:
+      "Which programming language shares its name with an island in Indonesia?",
+    correct_answer: "Java",
+    incorrect_answers: ["Python", "C", "Jakarta"],
+  },
+  {
+    category: "Science: Computers",
+    type: "multiple",
+    difficulty: "medium",
+    question:
+      "Which programming language shares its name with an island in Indonesia?",
+    correct_answer: "Java",
+    incorrect_answers: ["Python", "C", "Jakarta"],
+  },
+  {
+    category: "Science: Computers",
+    type: "multiple",
+    difficulty: "medium",
+    question:
+      "Which programming language shares its name with an island in Indonesia?",
+    correct_answer: "Java",
+    incorrect_answers: ["Python", "C", "Jakarta"],
+  },
+  {
+    category: "Science: Computers",
+    type: "multiple",
+    difficulty: "hard",
+    question:
+      "Which programming language shares its name with an island in Indonesia?",
+    correct_answer: "Java",
+    incorrect_answers: ["Python", "C", "Jakarta"],
+  },
+  {
+    category: "Science: Computers",
+    type: "multiple",
+    difficulty: "hard",
+    question:
+      "Which programming language shares its name with an island in Indonesia?",
+    correct_answer: "Java",
+    incorrect_answers: ["Python", "C", "Jakarta"],
+  },
+  {
+    category: "Science: Computers",
+    type: "multiple",
+    difficulty: "hard",
+    question:
+      "Which programming language shares its name with an island in Indonesia?",
+    correct_answer: "Java",
+    incorrect_answers: ["Python", "C", "Jakarta"],
+  },
+  {
+    category: "Science: Computers",
+    type: "multiple",
+    difficulty: "hard",
+    question:
+      "Which programming language shares its name with an island in Indonesia?",
+    correct_answer: "Java",
+    incorrect_answers: ["Python", "C", "Jakarta"],
+  },
+  {
+    category: "Science: Computers",
+    type: "multiple",
+    difficulty: "hard",
+    question:
+      "Which programming language shares its name with an island in Indonesia?",
+    correct_answer: "Java",
+    incorrect_answers: ["Python", "C", "Jakarta"],
+  },
+  {
+    category: "Science: Computers",
+    type: "multiple",
+    difficulty: "hard",
+    question:
+      "Which programming language shares its name with an island in Indonesia?",
+    correct_answer: "Java",
+    incorrect_answers: ["Python", "C", "Jakarta"],
+  },
+  {
+    category: "Science: Computers",
+    type: "multiple",
+    difficulty: "hard",
     question:
       "Which programming language shares its name with an island in Indonesia?",
     correct_answer: "Java",
@@ -158,6 +356,7 @@ let arrayRisposteCorrette = [];
 let arrayRisposteSbagliate = [];
 let risposte = [];
 let valueDomande = 0;
+let difficoltà ;
 let diffCheck = false;
 
 let counter = 0;
@@ -251,46 +450,34 @@ function selectRadio(parentId, i) {
         valueDomande = radioBtnArray[i].value ;
         console.log(valueDomande)
       }  
+      if(radioBtnArray[i].name === "difficoltà"){
+        difficoltà = radioBtnArray[i].value;
+        console.log(difficoltà)
+      }
   }
 }
 }
-
 //funzione preparazione array domande.///////////////////////
 
 //array è l'array di domande, num è il quantitativo preso poi con un input.number
 function preparazioneDomande (array,num){
-  //function separata?
-  let sceltaDifficoltà = document.querySelectorAll("#sceltaDifficolta input")
 
-  let difficoltà
-  sceltaDifficoltà.forEach(element => {
-    console.log(element.checked)
+    let domande = []
 
-    if(element.checked){
-      difficoltà = element.value
-      diffCheck = true;
-      console.log(difficoltà)
-    }
-  });
-
-  if(difficoltà){
     if (num > array.length) {
       console.error("Il numero richiesto di domande supera la lunghezza dell'array delle domande.");
       return array;  // ritorna tutto l'array di domande disponibili
     }
-  
-    let domande = []
-  
     // array domande - difficoltà 
     let domandeDifficoltà = []
   
+    console.log(difficoltà)
     array.forEach(element => {
       if(element.difficulty == difficoltà){
         domandeDifficoltà.push(element)
       }
     });
-  
-  
+
     while (domande.length < num) {
       let randomNum = Math.floor(Math.random() * domandeDifficoltà.length);
   
@@ -300,10 +487,24 @@ function preparazioneDomande (array,num){
       }
     }
     return domande;
-  }
 }
 
+function checkDifficoltà(){
+  let sceltaDifficoltà = document.querySelectorAll("#sceltaDifficolta input")
 
+  console.log(sceltaDifficoltà)
+
+  sceltaDifficoltà.forEach(element => {
+    console.log(element.checked)
+
+    if(element.checked){
+      diffCheck = true;
+    }
+    else{
+      return
+     }
+  })
+}
 
 
 
@@ -312,6 +513,7 @@ function preparazioneDomande (array,num){
 
 function inizioDomande(){
   //check difficoltà
+  checkDifficoltà();
 
   if(!diffCheck){
     alert("scegli una difficoltà")
@@ -336,7 +538,7 @@ function inizioDomande(){
   contenitore.style.opacity = "1"
 
   //creazione array Domande
-  let domande = preparazioneDomande(questions,value)
+  domande = preparazioneDomande(questions,value)
   //prossima domanda
   nextQuestion(domande)
   return
