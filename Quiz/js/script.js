@@ -362,38 +362,106 @@ let diffCheck = false;
 let counter = 0;
 let gameOver = false;
 
-// bottone inizio 
-let startBtn = document.getElementById("startBtn")
-startBtn.addEventListener("click",inizioDomande)
+
 
 //timer 
-function runTimer(timerElement) {
-  
+// function runTimer(timerElement) {
+//   const timerCircle = timerElement.querySelector('svg > circle + circle');
+//   timerElement.classList.add('animatable');
+//   timerCircle.style.strokeDashoffset = 1;
 
-  const timerCircle = timerElement.querySelector('svg > circle + circle');
-  timerElement.classList.add('animatable');
-  timerCircle.style.strokeDashoffset = 1;
-  let timeLeft= 60
+//   let timeLeft = 60;
+//   let timerOn = false; // Initialize timerOn
+//   let setTimer; // Declare setTimer
 
-  // if(timeRemaining<60){
-  //   clearInterval(countdownTimer);
-  //   timerElement.classList.remove('animatable')
-  // }
-  
-  let countdownTimer = setInterval(function(){  
-        let timeRemaining = timeLeft--;
-        timerTesto.innerHTML = timeRemaining;
-        const normalizedTime = (60 - timeRemaining) / 60
-        timerCircle.style.strokeDashoffset = normalizedTime;
-        if (timeRemaining <= 0) {
-          clearInterval(countdownTimer);
-          console.log("timer scaduto");
-          timerElement.classList.remove('animatable')
-          questionNumber();
-          nextQuestion(domande);
-        } 
-  }, 1000);
+//   function resetTimer() {
+//     console.log("sono qui")
+//     clearInterval(setTimer);
+//     timerElement.classList.remove('animatable');
+//     timeLeft = 60;
+//     timerOn = false;
+//     timerTesto.innerHTML = timeLeft; // Reset the displayed time
+//     timerCircle.style.strokeDashoffset = 1; // Reset the circle
+//   }
+
+//   function countdownTimer() {
+//     if (isTimeLeft()) {
+//       const timeRemaining = timeLeft--;
+//       const normalizedTime = (60 - timeRemaining) / 60;
+//       timerCircle.style.strokeDashoffset = normalizedTime;
+//       timerOn = true;
+//       timerTesto.innerHTML = timeRemaining;
+//     } else {
+//       clearInterval(setTimer);
+//       console.log("timer scaduto");
+//       timerElement.classList.remove('animatable');
+//       questionNumber();
+//       nextQuestion(domande);
+//     }
+//   }
+
+//   function isTimeLeft() {
+//     console.log(timeLeft)
+//     return timeLeft > -1;
+//   }
+
+//   // Sposta la chiamata a resetTimer() qui
+//   resetTimer(); // Reset the timer when the function is called
+//   console.log(timeLeft);
+
+//   setTimer = setInterval(countdownTimer, 1000);
+// }
+
+let timeLeft = 60;
+let timer = document.getElementById("timeLeft");
+let timerStop = false;
+
+function isTimeLeft() {
+	return timeLeft > -1;
 }
+
+function runTimer(timerElement) {
+	const timerCircle = timerElement.querySelector("svg > circle + circle");
+	timerElement.classList.add("animatable");
+	timerCircle.style.strokeDashoffset = 1;
+
+	let countdownTimer = setInterval(function () {
+		if (isTimeLeft()) {
+			console.log("banane");
+			const timeRemaining = timeLeft--;
+			const normalizedTime = (60 - timeRemaining) / 60;
+			timerCircle.style.strokeDashoffset = normalizedTime;
+			timer.innerHTML = timeRemaining;
+		} else {
+			resetTimer();
+		}
+	}, 1000);
+
+	if (timerStop) {
+		clearInterval(countdownTimer);
+		timerElement.classList.remove("animatable");
+		timerStop = false;
+	}
+}
+
+function resetTimer() {
+	timerStop = true;
+	timeLeft = 60;
+	runTimer(document.querySelector(".timer"));
+	questionNumber();
+	nextQuestion(domande);
+}
+
+
+// bottone inizio 
+let startBtn = document.getElementById("startBtn")
+startBtn.addEventListener("click",function(){
+  inizioDomande(), runTimer(document.querySelector('.timer'))
+})
+
+
+// // Esempio di chiamata della funzione
+// runTimer(document.getElementById('ilTuoTimer'));
 
 function selectRadio(parentId, i) {
   let parentDiv = document.getElementById(parentId);
@@ -526,8 +594,10 @@ function checkValue(){
 
 
 //funzione next question per "settare" la nuova domanda prende l'array domande come valore.
-function nextQuestion(array){
 
+
+
+function nextQuestion(array){
   //prendiamo il bottone NEXT
   let nextBtn = document.getElementById("prossimaBtn")
 
@@ -580,8 +650,6 @@ function nextQuestion(array){
         labelRisposteArray[i].style.display = "inlineBlock";
       }
     }
-
-    runTimer(document.querySelector('.timer'));
     return risposte
 
   }else{
@@ -632,7 +700,7 @@ function questionNumber(){
 let nextBtn = document.getElementById("prossimaBtn");
 nextBtn.addEventListener("click",function(){
   checkIfRight();
-  nextQuestion(domande)
+  resetTimer();
 })
 
 // convertire in %
@@ -683,32 +751,6 @@ function endScreen(){
   creazioneCiambella(arrayRisposteCorrette.length , arrayRisposteSbagliate.length)
 }
 
-
-// function creazioneCiambella(data1, data2){
-//   const data = {
-//     datasets: [{
-//       label: 'My First Dataset',
-//       data: [data1, data2],
-//       backgroundColor: [
-//         '#C2128D',
-//         '#01FFFF',
-//       ],
-//       hoverOffset: 4,
-//       cutout: 280,
-//     }]
-//   };
-
-
-//   const ctx = document.getElementById('myChart')
-//   ctx.style = {
-//     boxShadow: "rgb(38, 57, 77) 0px 20px 30px -10px",
-//     borderRadius: "1100px",
-//   };
-//   new Chart(ctx, {
-//     type: 'doughnut',
-//     data: data,
-//   });
-// }
 
 const ctx = document.getElementById('myChart');
 
