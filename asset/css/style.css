@@ -165,7 +165,7 @@ footer{
 .team{
     display: flex;
     justify-content: center;
-    margin-top: 57px;
+    margin-top: 58px;
 }
 
 
@@ -174,3 +174,4 @@ footer{
 .arrows svg :hover {
     fill: #00ffff;
 }
+
