@@ -366,63 +366,27 @@ let gameOver = false;
 let startBtn = document.getElementById("startBtn")
 startBtn.addEventListener("click",inizioDomande)
 
-
-// //timer 
-let timer;
-
-function startTimer() {
-  let durataTimer = 60;
-  let tempoTrascorso = 0;
-  let timerTesto = document.getElementById("timerTesto");
-
-  if (tempoTrascorso !== 0) {
-    clearInterval(timer);
-    tempoTrascorso = 0;
-    timerTesto.innerHTML = " ";
-  }
-
-  function tempoChePassa() {
-    tempoTrascorso++;
-    let secondi = durataTimer - tempoTrascorso;
-    timerTesto.innerHTML = secondi;
-    if (secondi <= 0) {
-      clearInterval(timer);
-      console.log("timer scaduto");
-      questionNumber();
-      nextQuestion(domande);
-    }
-  }
-
-  timer = setInterval(tempoChePassa, 1000);
-}
-
-let timeLeft = 60;
-
-function isTimeLeft() {
-  return timeLeft > -1;
-}
-
+//timer 
 function runTimer(timerElement) {
-    const timerCircle = timerElement.querySelector('svg > circle + circle');
-    timerElement.classList.add('animatable');
-    timerCircle.style.strokeDashoffset = 1;
+  const timerCircle = timerElement.querySelector('svg > circle + circle');
+  timerElement.classList.add('animatable');
+  timerCircle.style.strokeDashoffset = 1;
+  let timeLeft= 60
 
-    let countdownTimer = setInterval(function(){
-        if(isTimeLeft()){
-            const timeRemaining = timeLeft--;
-            const normalizedTime = (60 - timeRemaining) / 60;
-      // for clockwise animation
-      // const normalizedTime = (timeRemaining - 60) / 60;
-            timerCircle.style.strokeDashoffset = normalizedTime;
-      // timer.innerHTML = timeRemaining;
-        } else {
-            clearInterval(countdownTimer);
-            timerElement.classList.remove('animatable');
-        }
-    }, 1000);
+  let countdownTimer = setInterval(function(){  
+        let timeRemaining = timeLeft--;
+        timerTesto.innerHTML = timeRemaining;
+        const normalizedTime = (60 - timeRemaining) / 60
+        timerCircle.style.strokeDashoffset = normalizedTime;
+        if (timeRemaining <= 0) {
+          clearInterval(countdownTimer);
+          console.log("timer scaduto");
+          timerElement.classList.remove('animatable')
+          questionNumber();
+          nextQuestion(domande);
+        } 
+  }, 1000);
 }
-
-runTimer(document.querySelector('.timer'));
 
 function selectRadio(parentId, i) {
   let parentDiv = document.getElementById(parentId);
@@ -448,7 +412,7 @@ function selectRadio(parentId, i) {
 
       if(radioBtnArray[i].name === "numDomande"){
         valueDomande = radioBtnArray[i].value ;
-        console.log(valueDomande)
+        inputChecked = radioBtnArray[i] 
       }  
       if(radioBtnArray[i].name === "difficoltà"){
         difficoltà = radioBtnArray[i].value;
@@ -506,9 +470,6 @@ function checkDifficoltà(){
   })
 }
 
-
-
-
 //funzione inizio delle domande
 
 function inizioDomande(){
@@ -554,8 +515,12 @@ function checkValue(){
   return value = parseInt(valueDomande);
 }
 
+ let inputChecked
+
+
 //funzione next question per "settare" la nuova domanda prende l'array domande come valore.
 function nextQuestion(array){
+
   //prendiamo il bottone NEXT
   let nextBtn = document.getElementById("prossimaBtn")
 
@@ -609,7 +574,7 @@ function nextQuestion(array){
       }
     }
 
-    startTimer();
+    runTimer(document.querySelector('.timer'));
     return risposte
 
   }else{
@@ -665,9 +630,9 @@ nextBtn.addEventListener("click",function(){
 
 // convertire in %
 
-function convertiInPercentuale(numero) {
+function convertiInPercentuale(numero,totale) {
   // Moltiplica per 100 per ottenere la percentuale e aggiungi il simbolo percentuale
-  var percentuale = numero * 100 + "%";
+  var percentuale = (numero/totale) * 100 + "%";
   return percentuale;
 }
 
@@ -681,39 +646,35 @@ function endScreen(){
   divRisposte.style.display= "none";
   endScreen.style.display="block";
 
-  console.log(arrayRisposteCorrette)
   //numero domande totale /numero risposte corrette
 
   let testoRecapCorrette = document.getElementById("testoRecapCorrette")
 
   testoRecapCorrette.textContent = " "
-
+  testoRecapSbagliate.textContent = " "
   // % domande corrette
-  // i numeri che mi servono
-  corrette100 = convertiInPercentuale(arrayRisposteCorrette.length)
-  let testo100 = document.getElementById("testoCorrette")
+  corrette100 = convertiInPercentuale(arrayRisposteCorrette.length,domande.length)
+  let testoC100 = document.getElementById("testoCorrette")
+  console.log(testoC100)
 
-  testo100.innerHTML= corrette100;
-
-  // un modo per vedere %
-
+  testoC100.innerHTML= corrette100;
 
   testoRecapCorrette.innerHTML += arrayRisposteCorrette.length + " / " + domande.length
 
-
-  // let testoRecapSbagliate = document.getElementById("testoRecapSbagliate")
-
-  testoRecapSbagliate.textContent = " "
-
   // % domande sbagliate
+  sbagliate100 = convertiInPercentuale(arrayRisposteSbagliate.length,domande.length)
+  let testoS100 = document.getElementById("testoSbagliate")
+  console.log(testoS100)
+
+  testoS100.innerHTML= sbagliate100;
+
+  console.log(arrayRisposteSbagliate.length)
+
+
   testoRecapSbagliate.innerHTML += arrayRisposteSbagliate.length + " / " + domande.length
 
   creazioneCiambella(arrayRisposteCorrette.length , arrayRisposteSbagliate.length)
 }
-
-
-
-
 
 
 function creazioneCiambella(data1, data2){
@@ -740,11 +701,3 @@ function creazioneCiambella(data1, data2){
     data: data,
   });
 }
-
-
-
-
-
-
-
-

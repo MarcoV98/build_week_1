@@ -22,21 +22,21 @@
         <h1>Choose your difficulty</h1>
         
         <div id="sceltaDifficolta">
-          <label for="easy" class="checkRadioLabel"  onclick="selectRadio('sceltaDifficolta', 0)">Easy</label>
-          <input type="radio" class="checkRadio" name="difficoltà" value="easy">
-          <label for="medium" class="checkRadioLabel" onclick="selectRadio('sceltaDifficolta', 1)">Medium</label>
-          <input type="radio" class="checkRadio" name="difficoltà" value="medium">
-          <label for="hard" class="checkRadioLabel" onclick="selectRadio('sceltaDifficolta', 2)">Hard</label>
-          <input type="radio" class="checkRadio" name="difficoltà" value="hard">
+          <label for="diffA" class="checkRadioLabel"  onclick="selectRadio('sceltaDifficolta', 0)">Easy</label>
+          <input type="radio" class="checkRadio" name="difficoltà" value="easy" id="diffA">
+          <label for="diffB" class="checkRadioLabel" onclick="selectRadio('sceltaDifficolta', 1)">Medium</label>
+          <input type="radio" class="checkRadio" name="difficoltà" value="medium" id="diffB">
+          <label for="diffC" class="checkRadioLabel" onclick="selectRadio('sceltaDifficolta', 2)">Hard</label>
+          <input type="radio" class="checkRadio" name="difficoltà" value="hard" id="diffC">
         </div>
         
         <div id="sceltaDomande">
-          <label for="5" class="checkRadioLabel"  onclick="selectRadio('sceltaDomande', 0)">5</label>
-          <input type="radio" class="checkRadio" name="numDomande" value="5">
-          <label for="7" class="checkRadioLabel" onclick="selectRadio('sceltaDomande', 1)">7</label>
-          <input type="radio" class="checkRadio" name="numDomande" value="7">
-          <label for="10" class="checkRadioLabel" onclick="selectRadio('sceltaDomande', 2)">10</label>
-          <input type="radio" class="checkRadio" name="numDomande" value="10">
+          <label for="dA" class="checkRadioLabel"  onclick="selectRadio('sceltaDomande', 0)">5</label>
+          <input type="radio" class="checkRadio" name="numDomande" value="5" id="dA">
+          <label for="dB" class="checkRadioLabel" onclick="selectRadio('sceltaDomande', 1)">7</label>
+          <input type="radio" class="checkRadio" name="numDomande" value="7" id="dB">
+          <label for="dC" class="checkRadioLabel" onclick="selectRadio('sceltaDomande', 2)">10</label>
+          <input type="radio" class="checkRadio" name="numDomande" value="10" id="dC">
         </div>
 
         <input type="button" id="startBtn" value="Start">
@@ -61,17 +61,17 @@
         <h2 id="testoDomanda">placeholder</h2>
 
         <div id="contenitore-risposte">
-          <label for="A" class="checkRadioLabel" onclick="selectRadio('contenitore-risposte', 0)" ></label>
-          <input type="radio" name="risposta" class="checkRadio" value="0">
+          <label for="rA" class="checkRadioLabel" onclick="selectRadio('contenitore-risposte', 0)" ></label>
+          <input type="radio" name="risposta" class="checkRadio" value="0" id="rA">
     
-          <label for="B" class="checkRadioLabel" onclick="selectRadio('contenitore-risposte', 1)"></label>
-          <input type="radio" name="risposta" class="checkRadio" value="1">
+          <label for="rB" class="checkRadioLabel" onclick="selectRadio('contenitore-risposte', 1)"></label>
+          <input type="radio" name="risposta" class="checkRadio" value="1" id="rB">
     
-          <label for="C" class="checkRadioLabel" onclick="selectRadio('contenitore-risposte', 2)"></label>
-          <input type="radio" name="risposta" class="checkRadio" value="2">
+          <label for="rC" class="checkRadioLabel" onclick="selectRadio('contenitore-risposte', 2)"></label>
+          <input type="radio" name="risposta" class="checkRadio" value="2" id="rC">
     
-          <label for="D" class="checkRadioLabel" onclick="selectRadio('contenitore-risposte', 3)"></label>
-          <input type="radio" name="risposta" class="checkRadio" value="3">
+          <label for="rD" class="checkRadioLabel" onclick="selectRadio('contenitore-risposte', 3)"></label>
+          <input type="radio" name="risposta" class="checkRadio" value="3" id="rD">
         </div>
 
         <input type="button" id="prossimaBtn" value="next">
@@ -93,7 +93,7 @@
         </div>
         <div>
           <h2>Wrong</h2>
-          <p id="testo%sbagliate">Wrong%</p>
+          <p id="testoSbagliate">Wrong%</p>
           <p id="testoRecapSbagliate">Domande totali sbagliate /domande totali</p>
         </div>
 
