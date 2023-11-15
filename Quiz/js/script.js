@@ -375,10 +375,10 @@ function runTimer(timerElement) {
   timerCircle.style.strokeDashoffset = 1;
   let timeLeft= 60
 
-  if(timeRemaining<60){
-    clearInterval(countdownTimer);
-    timerElement.classList.remove('animatable')
-  }
+  // if(timeRemaining<60){
+  //   clearInterval(countdownTimer);
+  //   timerElement.classList.remove('animatable')
+  // }
   
   let countdownTimer = setInterval(function(){  
         let timeRemaining = timeLeft--;
