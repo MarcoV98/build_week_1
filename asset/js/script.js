@@ -166,54 +166,6 @@ let startBtn = document.getElementById("startBtn")
 startBtn.addEventListener("click",inizioDomande)
 
 // //timer 
-// let timer;
-// //timer(da rendere meno console.log)
-
-// function startTimer(){
-//   let durataTimer = 10
-//   let tempoTrascorso  = 0
-//   let timerTesto = document.getElementById("timerTesto")
-
-//   function updateChart(tempoTrascorso, durataTimer) {
-//     var chart = document.getElementById('chart');
-//     var slice = document.createElement('div');
-//     var rotation = (tempoTrascorso / durataTimer) * 360;
-  
-//     slice.className = 'slice';
-//     slice.style.backgroundColor = 'blue';
-//     slice.style.transform = 'rotate(' + rotation + 'deg)';
-//     chart.appendChild(slice);
-//   }
-
-//   if( tempoTrascorso !== 0){
-//     clearInterval(timer)
-//     tempoTrascorso = 0;
-//     timerTesto.innerHTML = " "
-//   }
-
-//   function tempoChePassa(){ 
-//     tempoTrascorso++
-//     timerTesto.innerHTML = tempoTrascorso
-//     let secondi = durataTimer - tempoTrascorso
-//     console.log(secondi)
-//     if(secondi <= 0){
-//       clearInterval(timer)
-//       console.log("timer scaduto")
-//       questionNumber();
-//       nextQuestion(domande)
-//     }
-//   }
-
-//   timer = setInterval(function() {
-//     tempoChePassa;
-//     updateChart(tempoTrascorso, totalTime);
-//   }, 1000); 
-//   // console.log(tempoTrascorso)
-//   // timer = setInterval(tempoChePassa,1000);
-
-//   // creazioneCiambella(timer, 60)
-// }
-
 let timer;
 
 function startTimer() {
