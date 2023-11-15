@@ -19,7 +19,7 @@
     <main>
       <div id="pre-start">
         <!--scegliere difficoltà -->
-        <h1>Scegli numero domande e difficoltà</h1>
+        <h1>Scegli numero <br><span> domande e difficoltà</span> </h1>
         
         <div id="sceltaDifficolta">
           <label for="easy" class="checkRadioLabel"  onclick="selectRadio(0)">Easy</label>
@@ -28,14 +28,36 @@
           <input type="radio" class="checkRadio" name="difficoltà" value="medium">
           <label for="hard" class="checkRadioLabel" onclick="selectRadio(2)">Hard</label>
           <input type="radio" class="checkRadio" name="difficoltà" value="hard">
+        <div class="ere">
+          
+          <div class="container">
+            <span class="next"></span>
+            <span class="prev"></span>
+            <div id="box">
+              <span>0</span>
+              
+            </div>
+          </div>
+          <div class="btnStart">
+            <input type="button" value="Start" id="startBtn">
+
+          </div>
+            
+  
+          </div>
+          
+          
+        </div>
+
+
         </div>
         
 
 
-        <input type="number" id="nDomande" >
-        <input type="button" value="Start" id="startBtn">
+       <!--  <input type="number" id="nDomande" >
+        <input type="button" value="Start" id="startBtn"> -->
+
         
-      </div>
 
       <div id="contenitore-domande" class="invs">
         <div id="timer"> 

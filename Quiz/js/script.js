@@ -455,6 +455,26 @@ function creazioneCiambella(data1, data2){
 }
 
 
+/* let numbers = document.getElementById(`box`);
+for( i=0;i<10;i++){
+  let span = document.createElement{`span`};
+  span.textContent = i;
+}
+
+let num = numbers.getElementByTagName(`span`);
+let index = 0;
+
+function nextNum( ) {
+  num[index].style.display = `none`;
+  index = (index + 1) % num.lengh;
+  num[index].style.display = `initial`;
+} */
+
+  
+  
+  
+
+
 
 
 
