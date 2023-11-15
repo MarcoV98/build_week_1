@@ -1,0 +1,91 @@
+body {
+  background: url(/asset/bg.jpg) center center/cover no-repeat;
+  color: white;
+  font-family: 'Outfit', sans-serif;
+}
+
+header img {
+  width: 15%;
+  margin-top: 2rem;
+  margin-left: 4.5rem;
+}
+
+main {
+  text-align: center;
+}
+
+h2 {
+  margin: 10rem 0 4rem 0;
+  max-width: 600px; 
+  margin-left: auto; 
+  margin-right: auto;
+  font-weight:lighter;
+  font-size: 2.5rem;
+}
+
+
+/* #pre-start {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 895px; 
+  margin: 0 auto; 
+} */
+
+
+
+
+
+/* non so come ficcarlo nelle domande*/
+
+/* 
+.grassettoDomanda {
+  font-weight: 700;
+}
+
+
+
+.checkRadio {
+  font-size: large;
+  display: inline-block;
+  padding: 1.3rem 7rem;
+  cursor: pointer;
+  border: 3px solid white;
+  color: white;
+  border-radius: 43px;
+  transition: background-color 0.3s;
+  margin: 0.5rem 1.8rem 1.3rem 1.8rem;
+  max-width: 150px;
+  min-width: 150px;
+  background-color: rgba(43,41,85, 0.6)
+}
+
+/*questo va selezionato quando selezionato*/
+/*
+.radio.selezionato {
+  background-image: linear-gradient(to right bottom, #D20094, #900080);
+}
+
+/* cosa vuol dire?*/
+/*
+.radio input {
+  display: none;
+}
+
+h3 {
+  margin-top: 7rem;
+  text-transform: uppercase;
+  font-size: medium;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+
+h3 span {
+  color: #D20094;
+}
+
+*/
+
+.invs{
+  opacity:0;
+}

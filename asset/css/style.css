@@ -10,7 +10,7 @@ body{
 }
 
 header{
-    margin-left: 5.5rem;
+    margin-left: 2em;
 }
 
 header img {
@@ -19,6 +19,9 @@ header img {
     margin-left: 4.5rem;
     
 }
+
+
+
 
 main{
     
@@ -119,11 +122,6 @@ input:checked ~ span::after{
     
 }
 
-
-
-
-
-
 .btnProceed{
     margin-left: 250px;
     width: 14rem;
@@ -161,4 +159,57 @@ label{
 footer{
     margin-left: 8rem;
     margin-top: 8rem;
+}
+
+
+/*js related stuff */
+
+#pre-start{
+  display: block;
+  width: 60%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25vh;
+}
+
+input[type="radio"]{
+  display:none;
+}
+
+label {
+  display: inline-block;
+  text-align: center;
+  font-size: large;
+  padding: 1.3rem;
+  cursor: pointer;
+  border: 3px solid white;
+  color: white;
+  border-radius: 43px;
+  transition: background-color 0.3s;
+  margin: 0.5rem 1.8rem 1.3rem 1.8rem;
+  max-width: 30%;
+  min-width: 30%;
+  background-color: rgba(43,41,85, 0.6)
+}
+
+.checkRadioChecked{
+  background: linear-gradient(to right bottom, #D20094, #900080);
+}
+
+#sceltaDifficolta{
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+
+#endScreen{
+  display: none;
+}
+
+#contenitore-domande{
+  display: none;
+  margin-top: 25vh;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }

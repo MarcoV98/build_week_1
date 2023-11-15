@@ -1,4 +1,3 @@
-
 // array domande
 const questions = [
   {
@@ -166,40 +165,96 @@ let gameOver = false;
 let startBtn = document.getElementById("startBtn")
 startBtn.addEventListener("click",inizioDomande)
 
-//timer 
+// //timer 
+// let timer;
+// //timer(da rendere meno console.log)
+
+// function startTimer(){
+//   let durataTimer = 10
+//   let tempoTrascorso  = 0
+//   let timerTesto = document.getElementById("timerTesto")
+
+//   function updateChart(tempoTrascorso, durataTimer) {
+//     var chart = document.getElementById('chart');
+//     var slice = document.createElement('div');
+//     var rotation = (tempoTrascorso / durataTimer) * 360;
+  
+//     slice.className = 'slice';
+//     slice.style.backgroundColor = 'blue';
+//     slice.style.transform = 'rotate(' + rotation + 'deg)';
+//     chart.appendChild(slice);
+//   }
+
+//   if( tempoTrascorso !== 0){
+//     clearInterval(timer)
+//     tempoTrascorso = 0;
+//     timerTesto.innerHTML = " "
+//   }
+
+//   function tempoChePassa(){ 
+//     tempoTrascorso++
+//     timerTesto.innerHTML = tempoTrascorso
+//     let secondi = durataTimer - tempoTrascorso
+//     console.log(secondi)
+//     if(secondi <= 0){
+//       clearInterval(timer)
+//       console.log("timer scaduto")
+//       questionNumber();
+//       nextQuestion(domande)
+//     }
+//   }
+
+//   timer = setInterval(function() {
+//     tempoChePassa;
+//     updateChart(tempoTrascorso, totalTime);
+//   }, 1000); 
+//   // console.log(tempoTrascorso)
+//   // timer = setInterval(tempoChePassa,1000);
+
+//   // creazioneCiambella(timer, 60)
+// }
+
 let timer;
-//timer(da rendere meno console.log)
 
-function startTimer(){
-  let durataTimer = 10
-  let tempoTrascorso  = 0
-  let timerTesto = document.getElementById("timerTesto")
+function startTimer() {
+  let durataTimer = 60;
+  let tempoTrascorso = 0;
+  let timerTesto = document.getElementById("timerTesto");
 
-  if( tempoTrascorso !== 0){
-    clearInterval(timer)
+  if (tempoTrascorso !== 0) {
+    clearInterval(timer);
     tempoTrascorso = 0;
-    timerTesto.innerHTML = " "
+    timerTesto.innerHTML = " ";
   }
 
-  function tempoChePassa(){ 
-    tempoTrascorso++
-    timerTesto.innerHTML = tempoTrascorso
-    let secondi = durataTimer - tempoTrascorso
-    console.log(secondi)
-
-    // creazioneCiambella(timer, 60)
-
-    if(secondi <= 0){
-      clearInterval(timer)
-      console.log("timer scaduto")
+  function tempoChePassa() {
+    tempoTrascorso++;
+    let secondi = durataTimer - tempoTrascorso;
+    timerTesto.innerHTML = secondi;
+    if (secondi <= 0) {
+      clearInterval(timer);
+      console.log("timer scaduto");
       questionNumber();
-      nextQuestion(domande)
+      nextQuestion(domande);
     }
   }
-  console.log(tempoTrascorso)
-  timer = setInterval(tempoChePassa,1000);
 
-  creazioneCiambella(timer, 60)
+  timer = setInterval(tempoChePassa, 1000);
+}
+
+function selectRadio(i) {
+  let radioBtn = document.getElementsByClassName("checkRadio")[i];
+  console.log(document.getElementsByClassName("checkRadio"))
+
+  let labelRadioBtnArray = Array.from(document.getElementsByClassName("checkRadioLabel"))
+
+  console.log(labelRadioBtnArray)
+  labelRadioBtnArray.forEach(label => {
+    label.classList.remove("checkRadioChecked")
+  });
+
+  radioBtn.checked = true;
+  labelRadioBtnArray[i].classList.add("checkRadioChecked")
 }
 
 //funzione preparazione array domande.///////////////////////
@@ -212,6 +267,7 @@ function preparazioneDomande (array,num){
   let difficoltà
   sceltaDifficoltà.forEach(element => {
     console.log(element.checked)
+
     if(element.checked){
       difficoltà = element.value
       console.log(difficoltà)
@@ -251,13 +307,18 @@ function preparazioneDomande (array,num){
 
 function inizioDomande(){
   let preStart = document.getElementById("pre-start")
+  let cDomande = document.getElementById("contenitore-domande")
 
    //check quante domande vuoi (in realtà penso di modificarlo in base alla difficoltà)
   let value = checkValue();
   if(value !== ""){
     
   //rendi il pre-start invisibile
-    preStart.style.opacity = 0;
+    preStart.style.display = "none";
+  //rendi il contenitore domande visibile
+  cDomande.style.display = "block";
+
+
 
   //rendere il contenitore visibile
   let contenitore = document.getElementById("contenitore-domande")
@@ -375,7 +436,6 @@ function checkIfRight() {
     counter++; // Incrementa il contatore delle domande
   }
 }
-
 function questionNumber(){
   return counter++;
  }
@@ -393,8 +453,8 @@ function endScreen(){
   let endScreen = document.getElementById("endScreen")
 
   //estetica
-  divRisposte.style.opacity="0";
-  endScreen.style.opacity="1";
+  divRisposte.style.display= "none";
+  endScreen.style.display="block";
 
   console.log(arrayRisposteCorrette)
   //numero domande totale /numero risposte corrette
@@ -412,7 +472,6 @@ function endScreen(){
   testoRecapSbagliate.textContent = " "
 
   // % domande sbagliate
-
   testoRecapSbagliate.innerHTML += arrayRisposteSbagliate.length + " / " + domande.length
 
   creazioneCiambella(arrayRisposteCorrette.length , arrayRisposteSbagliate.length)
@@ -432,16 +491,16 @@ function creazioneCiambella(data1, data2){
     }]
   };
   const ctx = document.getElementById('myChart')
-  // ctx.style.boxShadow= "12px 21px 24px 0px rgba(0, 0, 0, 0.21)"
-  ctx.style.boxShadow= "rgb(38, 57, 77) 0px 20px 30px -10px"
-  ctx.style.borderRadius="1000px"
-  
+
+  ctx.style = {
+    boxShadow: "rgb(38, 57, 77) 0px 20px 30px -10px",
+    borderRadius: "1100px",
+  };
   new Chart(ctx, {
     type: 'doughnut',
     data: data,
   });
 }
-
 
 
 
