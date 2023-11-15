@@ -368,11 +368,18 @@ startBtn.addEventListener("click",inizioDomande)
 
 //timer 
 function runTimer(timerElement) {
+  
+
   const timerCircle = timerElement.querySelector('svg > circle + circle');
   timerElement.classList.add('animatable');
   timerCircle.style.strokeDashoffset = 1;
   let timeLeft= 60
 
+  if(timeRemaining<60){
+    clearInterval(countdownTimer);
+    timerElement.classList.remove('animatable')
+  }
+  
   let countdownTimer = setInterval(function(){  
         let timeRemaining = timeLeft--;
         timerTesto.innerHTML = timeRemaining;
@@ -677,27 +684,48 @@ function endScreen(){
 }
 
 
-function creazioneCiambella(data1, data2){
-  const data = {
-    datasets: [{
-      label: 'My First Dataset',
-      data: [data1, data2],
-      backgroundColor: [
-        '#C2128D',
-        '#01FFFF',
-      ],
-      hoverOffset: 4,
-      cutout: 280,
-    }]
-  };
-  const ctx = document.getElementById('myChart')
+// function creazioneCiambella(data1, data2){
+//   const data = {
+//     datasets: [{
+//       label: 'My First Dataset',
+//       data: [data1, data2],
+//       backgroundColor: [
+//         '#C2128D',
+//         '#01FFFF',
+//       ],
+//       hoverOffset: 4,
+//       cutout: 280,
+//     }]
+//   };
 
-  ctx.style = {
-    boxShadow: "rgb(38, 57, 77) 0px 20px 30px -10px",
-    borderRadius: "1100px",
-  };
-  new Chart(ctx, {
-    type: 'doughnut',
-    data: data,
-  });
+
+//   const ctx = document.getElementById('myChart')
+//   ctx.style = {
+//     boxShadow: "rgb(38, 57, 77) 0px 20px 30px -10px",
+//     borderRadius: "1100px",
+//   };
+//   new Chart(ctx, {
+//     type: 'doughnut',
+//     data: data,
+//   });
+// }
+
+const ctx = document.getElementById('myChart');
+
+function creazioneCiambella(data1, data2){
+new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+
+    datasets: [{
+      label: '',
+      data: [data1, data2,],
+      backgroundColor: [
+        '#D20094',
+        '#00ffff',
+      ],
+    }]
+  },
+});
+
 }
