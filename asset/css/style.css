@@ -13,14 +13,10 @@ header img {
     width: 155px;
     margin-top: 2rem;
     margin-left: 4.5rem;
-    
 }
 
 main{
-    
     margin-left: 10rem;
-    
-    
 }
 
 h1{
@@ -114,11 +110,6 @@ input:checked ~ span::after{
     width: 12px;
     height: 21px;
     opacity: 1;
-    
-    
-    
-    
-    
 }
 
 .btnProceed{
@@ -126,8 +117,6 @@ input:checked ~ span::after{
     width: 14rem;
     height: 3.5rem;
     display: flex;
-
-
 }
 
 #accept-conditions{
