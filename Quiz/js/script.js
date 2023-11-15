@@ -157,6 +157,8 @@ const questions = [
 let arrayRisposteCorrette = [];
 let arrayRisposteSbagliate = [];
 let risposte = [];
+let valueDomande = 0;
+let diffCheck = false;
 
 let counter = 0;
 let gameOver = false;
@@ -223,32 +225,34 @@ function runTimer(timerElement) {
 
 runTimer(document.querySelector('.timer'));
 
+function selectRadio(parentId, i) {
+  let parentDiv = document.getElementById(parentId);
 
+  // Verifica se il div genitore esiste
+  if (parentDiv) {
+    // Trova tutti gli elementi con la classe "checkRadio" all'interno del div genitore
+    let radioBtnArray = parentDiv.getElementsByClassName("checkRadio");
 
+    // Verifica se l'indice fornito è valido
+    if (i >= 0 && i < radioBtnArray.length) {
+      // Rimuovi la classe "checkRadioChecked" da tutti gli elementi
+      Array.from(parentDiv.getElementsByClassName("checkRadioLabel")).forEach(label => {
+        label.classList.remove("checkRadioChecked");
+      });
 
+      // Imposta il radio button corrispondente all'indice come selezionato
+      radioBtnArray[i].checked = true;
 
+      // Aggiungi la classe "checkRadioChecked" al label corrispondente all'indice
+      let labelRadioBtnArray = Array.from(parentDiv.getElementsByClassName("checkRadioLabel"));
+      labelRadioBtnArray[i].classList.add("checkRadioChecked");
 
-
-
-
-function selectRadio(i) {
-  let radioBtn = document.getElementsByClassName("checkRadio")[i];
-  console.log(document.getElementsByClassName("checkRadio"))
-
-  let labelRadioBtnArray = Array.from(document.getElementsByClassName("checkRadioLabel"))
-
-
-  //se il nome è uguale non illuminarti? 
-  console.log(labelRadioBtnArray[i])
-  
-
-  labelRadioBtnArray.forEach(label => {
-    label.classList.remove("checkRadioChecked")
-  });
-
-
-  radioBtn.checked = true;
-  labelRadioBtnArray[i].classList.add("checkRadioChecked")
+      if(radioBtnArray[i].name === "numDomande"){
+        valueDomande = radioBtnArray[i].value ;
+        console.log(valueDomande)
+      }  
+  }
+}
 }
 
 //funzione preparazione array domande.///////////////////////
@@ -264,42 +268,57 @@ function preparazioneDomande (array,num){
 
     if(element.checked){
       difficoltà = element.value
+      diffCheck = true;
       console.log(difficoltà)
     }
   });
 
-
-  if (num > array.length) {
-    console.error("Il numero richiesto di domande supera la lunghezza dell'array delle domande.");
-    return array;  // ritorna tutto l'array di domande disponibili
-  }
-
-  let domande = []
-
-  // array domande - difficoltà 
-  let domandeDifficoltà = []
-
-  array.forEach(element => {
-    if(element.difficulty == difficoltà){
-      domandeDifficoltà.push(element)
+  if(difficoltà){
+    if (num > array.length) {
+      console.error("Il numero richiesto di domande supera la lunghezza dell'array delle domande.");
+      return array;  // ritorna tutto l'array di domande disponibili
     }
-  });
-
-
-  while (domande.length < num) {
-    let randomNum = Math.floor(Math.random() * domandeDifficoltà.length);
-
-  // prendere domande random in base alla difficoltà
-    if (!domande.includes(domandeDifficoltà[randomNum])) {
-      domande.push(domandeDifficoltà[randomNum]);
+  
+    let domande = []
+  
+    // array domande - difficoltà 
+    let domandeDifficoltà = []
+  
+    array.forEach(element => {
+      if(element.difficulty == difficoltà){
+        domandeDifficoltà.push(element)
+      }
+    });
+  
+  
+    while (domande.length < num) {
+      let randomNum = Math.floor(Math.random() * domandeDifficoltà.length);
+  
+    // prendere domande random in base alla difficoltà
+      if (!domande.includes(domandeDifficoltà[randomNum])) {
+        domande.push(domandeDifficoltà[randomNum]);
+      }
     }
+    return domande;
   }
-  return domande;
 }
+
+
+
+
+
 
 //funzione inizio delle domande
 
 function inizioDomande(){
+  //check difficoltà
+
+  if(!diffCheck){
+    alert("scegli una difficoltà")
+    return
+  }
+
+
   let preStart = document.getElementById("pre-start")
   let cDomande = document.getElementById("contenitore-domande")
 
@@ -312,14 +331,12 @@ function inizioDomande(){
   //rendi il contenitore domande visibile
   cDomande.style.display = "block";
 
-
-
   //rendere il contenitore visibile
   let contenitore = document.getElementById("contenitore-domande")
   contenitore.style.opacity = "1"
 
   //creazione array Domande
-  domande = preparazioneDomande(questions,value)
+  let domande = preparazioneDomande(questions,value)
   //prossima domanda
   nextQuestion(domande)
   return
@@ -331,8 +348,8 @@ function inizioDomande(){
 
 //funzione per avere un tot definito dall'utente di domande (da cambiare probabilmente in base alla difficoltà)
 function checkValue(){
-  let nDomande = document.getElementById("nDomande");
-  return value = nDomande.value;
+  console.log(valueDomande)
+  return value = parseInt(valueDomande);
 }
 
 //funzione next question per "settare" la nuova domanda prende l'array domande come valore.
@@ -374,7 +391,6 @@ function nextQuestion(array){
     let labelRisposteArray = document.querySelectorAll("#contenitore-risposte label")
     let inputs = document.querySelectorAll("#contenitore-risposte input")
 
-    //non ricordo
     nextBtn.style.opacity ="1"
 
     //aggiungere il testo delle risposte ai label
@@ -385,9 +401,9 @@ function nextQuestion(array){
       labelRisposteArray[i].textContent = risposte[i]
 
       if(labelRisposteArray[i].textContent.length === 0){
-        inputs[i].style.opacity = "0";
+        labelRisposteArray[i].style.display = "none";
       }else{
-        inputs[i].style.opacity = "1";
+        labelRisposteArray[i].style.display = "inlineBlock";
       }
     }
 
