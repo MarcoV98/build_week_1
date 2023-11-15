@@ -19,63 +19,58 @@
     <main>
       <div id="pre-start">
         <!--scegliere difficoltà -->
-        <h1>Scegli numero <br><span> domande e difficoltà</span> </h1>
+        <h1>Choose your difficulty</h1>
         
         <div id="sceltaDifficolta">
-          <label for="easy" class="checkRadioLabel"  onclick="selectRadio(0)">Easy</label>
+          <label for="easy" class="checkRadioLabel"  onclick="selectRadio('sceltaDifficolta', 0)">Easy</label>
           <input type="radio" class="checkRadio" name="difficoltà" value="easy">
-          <label for="medium" class="checkRadioLabel" onclick="selectRadio(1)">Medium</label>
+          <label for="medium" class="checkRadioLabel" onclick="selectRadio('sceltaDifficolta', 1)">Medium</label>
           <input type="radio" class="checkRadio" name="difficoltà" value="medium">
-          <label for="hard" class="checkRadioLabel" onclick="selectRadio(2)">Hard</label>
+          <label for="hard" class="checkRadioLabel" onclick="selectRadio('sceltaDifficolta', 2)">Hard</label>
           <input type="radio" class="checkRadio" name="difficoltà" value="hard">
-        <div class="ere">
-          
-          <div class="container">
-            <span class="next"></span>
-            <span class="prev"></span>
-            <div id="box">
-              <span>0</span>
-              
-            </div>
-          </div>
-          <div class="btnStart">
-            <input type="button" value="Start" id="startBtn">
-
-          </div>
-            
-  
-          </div>
-          
-          
-        </div>
-
-
         </div>
         
+        <div id="sceltaDomande">
+          <label for="5" class="checkRadioLabel"  onclick="selectRadio('sceltaDomande', 0)">5</label>
+          <input type="radio" class="checkRadio" name="numDomande" value="5">
+          <label for="7" class="checkRadioLabel" onclick="selectRadio('sceltaDomande', 1)">7</label>
+          <input type="radio" class="checkRadio" name="numDomande" value="7">
+          <label for="10" class="checkRadioLabel" onclick="selectRadio('sceltaDomande', 2)">10</label>
+          <input type="radio" class="checkRadio" name="numDomande" value="10">
+        </div>
 
-
-       <!--  <input type="number" id="nDomande" >
-        <input type="button" value="Start" id="startBtn"> -->
-
+        <input type="button" id="startBtn" value="Start">
         
-
+      </div>
       <div id="contenitore-domande" class="invs">
+
         <div id="timer"> 
-          <p id="timerTesto"></p> 
+          <!-- <p id="timerTesto"></p>  -->
+          <h2>Time Left</h2>
+          <div class="timer animatable">
+            <svg>
+              <circle cx="50%" cy="50%" r="90"/>
+              <circle cx="50%" cy="50%" r="90" pathLength="1" />
+              <text x="100" y="100" id="timerTesto" text-anchor="middle"><tspan id="timeLeft"></tspan></text>
+              <text x="100" y="120" text-anchor="middle">seconds</text>
+            </svg>
+          </div>
         </div>
-        <h2>placeholder</h2>
+
+
+        <h2 id="testoDomanda">placeholder</h2>
 
         <div id="contenitore-risposte">
-          <label for="A" class="checkRadioLabel" onclick="selectRadio(3)" ></label>
+          <label for="A" class="checkRadioLabel" onclick="selectRadio('contenitore-risposte', 0)" ></label>
           <input type="radio" name="risposta" class="checkRadio" value="0">
     
-          <label for="B" class="checkRadioLabel" onclick="selectRadio(4)"></label>
+          <label for="B" class="checkRadioLabel" onclick="selectRadio('contenitore-risposte', 1)"></label>
           <input type="radio" name="risposta" class="checkRadio" value="1">
     
-          <label for="C" class="checkRadioLabel" onclick="selectRadio(5)"></label>
+          <label for="C" class="checkRadioLabel" onclick="selectRadio('contenitore-risposte', 2)"></label>
           <input type="radio" name="risposta" class="checkRadio" value="2">
     
-          <label for="D" class="checkRadioLabel" onclick="selectRadio(6)"></label>
+          <label for="D" class="checkRadioLabel" onclick="selectRadio('contenitore-risposte', 3)"></label>
           <input type="radio" name="risposta" class="checkRadio" value="3">
         </div>
 
@@ -92,20 +87,20 @@
           <h1>Results</h1>
           <p>The summary of your answers:</p>
         <div>
-          <h2>Correct</h2>
-          <p>Correct%</p>
+          <h2 >Correct</h2>
+          <p id="testoCorrette">Correct%</p>
           <p id="testoRecapCorrette">Domande totali corrette /domande totali</p>
         </div>
         <div>
           <h2>Wrong</h2>
-          <p>Wrong%</p>
+          <p id="testo%sbagliate">Wrong%</p>
           <p id="testoRecapSbagliate">Domande totali sbagliate /domande totali</p>
         </div>
 
         <input type="button" value="rate us">
       </div>
 
-      <div style="width: 800px;"><canvas id="myChart"></canvas></div>
+    <div class="chart-container"><canvas class="my-chart"></canvas></div>
 
     </main>
 
