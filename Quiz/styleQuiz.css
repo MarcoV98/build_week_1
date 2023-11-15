@@ -1,0 +1,162 @@
+main {
+  margin-left: 0;
+}
+
+h1{
+  line-height: 1.2em;
+  margin-bottom: 2rem;
+}
+
+
+#startBtn{
+  padding: 1rem;
+  background-color: #00ffff;
+  border: transparent;
+  box-shadow: 0px 0px 13px 4px #00ffff;
+  font-size: 23px;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8%;
+  margin-top: 2rem;
+}
+
+
+
+/*js related stuff */
+#pre-start{
+  display: block;
+  width: 60%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15vh;
+}
+
+input[type="radio"]{
+  display:none;
+}
+
+label {
+  display: inline-block;
+  text-align: center;
+  font-size: large;
+  padding: 1.3rem;
+  cursor: pointer;
+  border-top: 3px solid white;
+  border-left: 3px solid white;
+  color: white;
+  border-radius: 43px;
+  transition: background-color 0.3s;
+  margin: 0.5rem 1.8rem 1.3rem 1.8rem;
+  max-width: 30%;
+  min-width: 30%;
+  background-color: rgba(43,41,85, 0.6)
+}
+
+#contatoreDomande {
+  margin-top: 10rem;
+  color: white;
+
+}
+
+#testoDomanda {
+  color: white;
+  max-width: 1000px;
+  font-size: 3rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5rem;
+}
+
+#prossimaBtn {
+  padding: 1rem;
+  background-color: #00ffff;
+  border: transparent;
+  box-shadow: 0px 0px 13px 4px #00ffff;
+  font-size: 23px;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8%;
+  margin-top: 4rem;
+}
+
+/* #counterStyle {
+  color: white;
+} */
+
+.pink {
+  color: #fd0d99;
+}
+
+.checkRadioChecked{
+  background: linear-gradient(to right bottom, #D20094, #900080);
+}
+
+#endScreen{
+  display: none;
+}
+
+#contenitore-domande{
+  display: none;
+  margin-top: 22vh;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1600px;
+}
+
+
+
+
+.timer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-top: 2rem; 
+    margin-right: 6rem;
+}
+
+.timer > svg {
+    width: 200px;
+    height: 200px;
+}
+
+.timer > svg > circle {
+    fill: none;
+    stroke-opacity: 0.3;
+    stroke: #00ffff;
+    stroke-width: 20;
+    transform-origin: center center;
+    transform: rotate(-90deg);
+}
+
+.timer > svg > circle + circle {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    stroke-linecap: round;
+    stroke-opacity: 1;
+}
+
+.timer.animatable > svg > circle + circle {
+    transition: stroke-dashoffset 0.3s ease;
+}
+
+.timer > svg > text {
+    font-size: 2rem;
+}
+
+.timer > svg > text + text {
+    font-size: 3rem;
+}
+
+.timer svg text.white {
+  fill: white; 
+  font-size: 1rem;
+}
+
+#timer svg #timerTesto {
+  fill: white;
+  font-size: 3.5rem;
+}
