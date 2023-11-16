@@ -94,12 +94,16 @@ label {
   color: white;
 } */
 
-#colorCounter {
+.pink {
   color: #fd0d99;
 }
 
 .checkRadioChecked{
   background: linear-gradient(to right bottom, #D20094, #900080);
+}
+
+.green{
+  background-color: green;
 }
 
 #endScreen{
@@ -116,7 +120,7 @@ label {
 }
 
 .timer {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     margin-top: 2rem; 
@@ -165,3 +169,5 @@ label {
   fill: white;
   font-size: 3.5rem;
 }
+
+
