@@ -89,32 +89,41 @@
 
 
       <div id="endScreen">
-          <h1>Results</h1>
-          <p>The summary of your answers:</p>
-          <div>
-            <div>
-              <h2 >Correct</h2>
+          <h1 style="text-align: center;">Results</h1>
+          <h2 style="text-align: center;">The summary of your answers:</h2>
+
+          
+          <div class="containerResult">
+
+            <div class="correct">
+              <h2 class="h2Correct">Correct</h2>
               <p id="testoCorrette">Correct%</p>
               <p id="testoRecapCorrette">Domande totali corrette /domande totali</p>
             </div>
 
-            <div>
-              <div class="containerChart">
-                <canvas id="myDoughnutChart"style="width: 500px;"></canvas>
-                <p>testo</p>
-              </div>
-            </div>
             
-            <div>
-              <h2>Wrong</h2>
+              <div class="containerChart">
+                <div class="feed"><h3 >Congratulations! <br>
+                   <span>You passed the exam.</span></h3>
+                  <p>We'll send you the certificate <br>
+                  in few minutes. <br>Check your email (including <br>
+                promotion / spam folder)</p></div>
+                <canvas id="myDoughnutChart"style="width: 400px;"></canvas>
+                
+              </div>
+            
+            
+            <div class="wrong">
+              <h2 class="h2Wrong">Wrong</h2>
               <p id="testoSbagliate">Wrong%</p>
               <p id="testoRecapSbagliate">Domande totali sbagliate /domande totali</p>
             </div>
-    
-            
           </div>
+    
+         <div class="rate"> <a href="/FeedBack/feedback.html"><input type="button" value="rate us"></a>
+         </div></div>
 
-          <a href="/FeedBack/feedback.html"><input type="button" value="rate us"></a>
+          
           
           </div>
 

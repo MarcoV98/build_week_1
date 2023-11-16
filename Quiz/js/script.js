@@ -788,12 +788,13 @@ function creazioneCiambella(data1, data2){
               '#00ffff', // Color for the first segment
               '#d20094'  // Color for the second segment
           ],
+          borderWidth: 0
       }],
 
   };
 
   var options = {
-      cutout: 190, 
+      cutout: 145, 
       rotation: 35* Math.PI,
       responsive: false, // Set to true for a responsive chart
   };

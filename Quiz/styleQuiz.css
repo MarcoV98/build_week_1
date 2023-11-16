@@ -7,6 +7,11 @@ h1{
   margin-bottom: 2rem;
 }
 
+h2{
+  font-size: 40px;
+  color: white;
+}
+
 
 #startBtn{
   padding: 1rem;
@@ -167,6 +172,116 @@ label {
 #timer svg #timerTesto {
   fill: white;
   font-size: 3.5rem;
+}
+
+#endScreen h1{
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+
+
+.containerResult {
+  display: flex;
+  justify-content: space-evenly;
+  padding-left: 50px;
+  padding-right: 50px;
+
+}
+
+.feed{
+  display: flex;
+    position: relative;
+    left: 325px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 22px;
+
+}
+
+.feed h3{
+  color: white;
+  font-size: 25px;
+}
+
+.feed span{
+  color: #00ffff;
+  font-size: 25px;
+}
+
+.feed p {
+margin-top: 20px;
+
+}
+
+.containerChart{
+  display: flex;
+  margin-top: 24px;
+  position: relative;
+  right: 8rem;
+
+}
+
+.correct{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    left: 90px;
+}
+
+.wrong{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    right: 90px;
+
+}
+
+.correct p {
+  font-size: 30px;
+}
+
+.wrong p {
+  font-size: 30px;
+}
+
+.rate{
+  display: flex;
+  justify-content: center;
+  height: 5rem;
+  margin-top: 70px;
+  
+}
+
+.rate input{
+  width: 285px;
+    height: 100%;
+    background: none;
+    border: 2px solid white;
+    color: white;
+    font-size: 26px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: bold;
+
+}
+
+.h2Correct{
+  font-size: 73px;
+    color: white;
+
+}
+
+.h2Wrong{
+  font-size: 73px;
+  color: white;
+
 }
 
 
