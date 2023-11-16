@@ -595,8 +595,6 @@ function checkValue(){
 
 //funzione next question per "settare" la nuova domanda prende l'array domande come valore.
 
-
-
 function nextQuestion(array){
   //prendiamo il bottone NEXT
   let nextBtn = document.getElementById("prossimaBtn")
