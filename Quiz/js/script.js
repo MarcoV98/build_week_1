@@ -727,7 +727,7 @@ let nextBtn = document.getElementById("prossimaBtn");
 nextBtn.addEventListener("click",function(){
   checkIfRight();
   timerStop = true;
-  setTimeout(()=> {resetTimer(),changeColor(rispostaCorrettaIndex)},3000)
+  setTimeout(()=> {resetTimer(),changeColor(rispostaCorrettaIndex)},0)
 })
 
 // convertire in %
@@ -779,22 +779,30 @@ function endScreen(){
 }
 
 
-const ctx = document.getElementById('myChart');
-
 function creazioneCiambella(data1, data2){
-new Chart(ctx, {
-  type: 'doughnut',
-  data: {
 
-    datasets: [{
-      label: '',
-      data: [data1, data2,],
-      backgroundColor: [
-        '#D20094',
-        '#00ffff',
-      ],
-    }]
-  },
-});
+  var ctx = document.getElementById('myDoughnutChart').getContext('2d');
 
+  var data = {
+      datasets: [{
+          data: [data1, data2], // Specify the data values for the chart
+          backgroundColor: [
+              '#00ffff', // Color for the first segment
+              '#d20094'  // Color for the second segment
+          ],
+      }],
+
+  };
+
+  var options = {
+      cutout: 190, 
+      rotation: 35* Math.PI,
+      responsive: false, // Set to true for a responsive chart
+  };
+
+  var myDoughnutChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: data,
+      options: options
+  })
 }

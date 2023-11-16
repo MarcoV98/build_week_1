@@ -91,26 +91,36 @@
       <div id="endScreen">
           <h1>Results</h1>
           <p>The summary of your answers:</p>
-        <div>
-          <h2 >Correct</h2>
-          <p id="testoCorrette">Correct%</p>
-          <p id="testoRecapCorrette">Domande totali corrette /domande totali</p>
-        </div>
-        <div>
-          <h2>Wrong</h2>
-          <p id="testoSbagliate">Wrong%</p>
-          <p id="testoRecapSbagliate">Domande totali sbagliate /domande totali</p>
-        </div>
+          <div>
+            <div>
+              <h2 >Correct</h2>
+              <p id="testoCorrette">Correct%</p>
+              <p id="testoRecapCorrette">Domande totali corrette /domande totali</p>
+            </div>
 
-        <a href="/FeedBack/feedback.html"><input type="button" value="rate us"></a>
-      </div>
+            <div>
+              <div class="containerChart">
+                <canvas id="myDoughnutChart"style="width: 500px;"></canvas>
+                <p>testo</p>
+              </div>
+            </div>
+            
+            <div>
+              <h2>Wrong</h2>
+              <p id="testoSbagliate">Wrong%</p>
+              <p id="testoRecapSbagliate">Domande totali sbagliate /domande totali</p>
+            </div>
+    
+            
+          </div>
 
-      <div class="chartContainer" style="width: 400px;"><canvas id="myChart"></canvas></div>
+          <a href="/FeedBack/feedback.html"><input type="button" value="rate us"></a>
+          
+          </div>
 
     </main>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
   <script src="js/script.js"></script>
 </body>
 </html>
