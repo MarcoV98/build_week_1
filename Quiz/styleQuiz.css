@@ -4,11 +4,12 @@ main {
 
 h1{
   line-height: 1.2em;
+  margin-bottom: 2rem;
 }
 
 
 #startBtn{
-  padding: 0.3em;
+  padding: 1rem;
   background-color: #00ffff;
   border: transparent;
   box-shadow: 0px 0px 13px 4px #00ffff;
@@ -16,8 +17,10 @@ h1{
   text-transform: uppercase;
   font-weight: bold;
   cursor: pointer;
-  margin-left: 2em;
+  border-radius: 8%;
+  margin-top: 2rem;
 }
+
 
 
 /*js related stuff */
@@ -40,7 +43,8 @@ label {
   font-size: large;
   padding: 1.3rem;
   cursor: pointer;
-  border: 3px solid white;
+  border-top: 3px solid white;
+  border-left: 3px solid white;
   color: white;
   border-radius: 43px;
   transition: background-color 0.3s;
@@ -50,13 +54,44 @@ label {
   background-color: rgba(43,41,85, 0.6)
 }
 
-.checkRadioChecked{
-  background: linear-gradient(to right bottom, #D20094, #900080);
+#contatoreDomande {
+  margin-top: 10rem;
+  color: white;
+
 }
 
-#sceltaDifficolta{
-  margin-top: 3em;
-  margin-bottom: 3em;
+#testoDomanda {
+  color: white;
+  max-width: 1000px;
+  font-size: 3rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5rem;
+}
+
+#prossimaBtn {
+  padding: 1rem;
+  background-color: #00ffff;
+  border: transparent;
+  box-shadow: 0px 0px 13px 4px #00ffff;
+  font-size: 23px;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8%;
+  margin-top: 4rem;
+}
+
+/* #counterStyle {
+  color: white;
+} */
+
+.pink {
+  color: #fd0d99;
+}
+
+.checkRadioChecked{
+  background: linear-gradient(to right bottom, #D20094, #900080);
 }
 
 #endScreen{
@@ -65,15 +100,22 @@ label {
 
 #contenitore-domande{
   display: none;
-  margin-top: 25vh;
+  margin-top: 22vh;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  max-width: 1600px;
 }
 
 
+
+
 .timer {
-    margin-top: 10px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-top: 2rem; 
+    margin-right: 6rem;
 }
 
 .timer > svg {
@@ -84,8 +126,8 @@ label {
 .timer > svg > circle {
     fill: none;
     stroke-opacity: 0.3;
-    stroke: #fd0d99;
-    stroke-width: 10;
+    stroke: #00ffff;
+    stroke-width: 20;
     transform-origin: center center;
     transform: rotate(-90deg);
 }
@@ -106,7 +148,15 @@ label {
 }
 
 .timer > svg > text + text {
-    font-size: 1rem;
+    font-size: 3rem;
 }
 
+.timer svg text.white {
+  fill: white; 
+  font-size: 1rem;
+}
 
+#timer svg #timerTesto {
+  fill: white;
+  font-size: 3.5rem;
+}
