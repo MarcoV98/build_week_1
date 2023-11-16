@@ -350,63 +350,12 @@ const questions = [
 // variabili globali
 let arrayRisposteCorrette = [];
 let arrayRisposteSbagliate = [];
-let risposte = [];
-let valueDomande = 0;
 let difficoltà;
-let diffCheck = false;
-let cliccato = false;
 let checked = false;
+let cliccato = false;
 
 let counter = 0;
 let gameOver = false;
-
-//timer
-// function runTimer(timerElement) {
-//   const timerCircle = timerElement.querySelector('svg > circle + circle');
-//   timerElement.classList.add('animatable');
-//   timerCircle.style.strokeDashoffset = 1;
-
-//   let timeLeft = 60;
-//   let timerOn = false; // Initialize timerOn
-//   let setTimer; // Declare setTimer
-
-//   function resetTimer() {
-//     console.log("sono qui")
-//     clearInterval(setTimer);
-//     timerElement.classList.remove('animatable');
-//     timeLeft = 60;
-//     timerOn = false;
-//     timerTesto.innerHTML = timeLeft; // Reset the displayed time
-//     timerCircle.style.strokeDashoffset = 1; // Reset the circle
-//   }
-
-//   function countdownTimer() {
-//     if (isTimeLeft()) {
-//       const timeRemaining = timeLeft--;
-//       const normalizedTime = (60 - timeRemaining) / 60;
-//       timerCircle.style.strokeDashoffset = normalizedTime;
-//       timerOn = true;
-//       timerTesto.innerHTML = timeRemaining;
-//     } else {
-//       clearInterval(setTimer);
-//       console.log("timer scaduto");
-//       timerElement.classList.remove('animatable');
-//       questionNumber();
-//       nextQuestion(domande);
-//     }
-//   }
-
-//   function isTimeLeft() {
-//     console.log(timeLeft)
-//     return timeLeft > -1;
-//   }
-
-//   // Sposta la chiamata a resetTimer() qui
-//   resetTimer(); // Reset the timer when the function is called
-//   console.log(timeLeft);
-
-//   setTimer = setInterval(countdownTimer, 1000);
-// }
 
 let timeLeft = 60;
 let timer = document.getElementById("timeLeft");
@@ -422,7 +371,6 @@ function runTimer(timerElement) {
 	timerCircle.style.strokeDashoffset = 1;
 
 	let countdownTimer = setInterval(function () {
-		console.log(timerStop);
 
 		if (isTimeLeft()) {
 			const timeRemaining = timeLeft--;
@@ -458,258 +406,178 @@ startBtn.addEventListener("click", function () {
 	inizioDomande(), runTimer(document.querySelector(".timer"));
 });
 
-// // Esempio di chiamata della funzione
-// runTimer(document.getElementById('ilTuoTimer'));
-// let i
+///////////// funzione selectRadio
+function selectRadio(parentId, i) {
+	//prendi il prescelto
+	let prescelto = suddivisione(parentId, i);
 
-// function selectRadio(parentId, i) {
-//   let parentDiv = document.getElementById(parentId);
+	//lable
+	let presceltoLabel = suddivisioneLabel(parentId, i);
 
-//   if(!i){
-//     console.log("oh")
-//   }
+	//rimuovi colore label (se precedentemente selezionata) + add colore.
+	cambioColoreLabel(parentId, presceltoLabel);
+	presceltoLabel.classList.add("checkRadioChecked");
 
-//   // Verifica se il div genitore esiste
-//   if (parentDiv) {
-//     // Trova tutti gli elementi con la classe "checkRadio" all'interno del div genitore
-//     let radioBtnArray = parentDiv.getElementsByClassName("checkRadio");
-//     // Verifica se l'indice fornito è valido
-//     if (i >= 0 && i < radioBtnArray.length) {
-//       // Rimuovi la classe "checkRadioChecked" da tutti gli elementi
-//       Array.from(parentDiv.getElementsByClassName("checkRadioLabel")).forEach(label => {
-//         label.classList.remove("checkRadioChecked");
-//       });
-//       // Imposta il radio button corrispondente all'indice come selezionato
-//       radioBtnArray[i].checked = true;
+  return prescelto
+}
 
-//         // Aggiungi la classe "checkRadioChecked" al label corrispondente all'indice
-//         let labelRadioBtnArray = Array.from(parentDiv.getElementsByClassName("checkRadioLabel"));
-//         labelRadioBtnArray[i].classList.add("checkRadioChecked");
-
-//         if(radioBtnArray[i].name === "numDomande"){
-//           valueDomande = radioBtnArray[i].value ;
-//           inputChecked = radioBtnArray[i]
-//         }
-//         if(radioBtnArray[i].name === "difficoltà"){
-//           difficoltà = radioBtnArray[i].value;
-//           console.log(difficoltà)
-//         }
-//         if(radioBtnArray[i].name === "risposta"){
-//           if(radioBtnArray[i].checked){
-//             return giusto = labelRadioBtnArray[i]
-//           }
-//         }
-//       }
-//   }
-// }
-
-let i;
-
-
-function selectRadio(parentId, index) {
-  let i = parseInt(index)
-  console.log(index)
+//funzioni selectRadio
+//funzione per "trovare" il pescelto(aka la box selezionata)
+function suddivisione(parentId, i) {
 	let parentDiv = document.getElementById(parentId);
-	let radioBtnArray = parentDiv.getElementsByClassName("checkRadio");
+	let nextBtn = document.getElementById("prossimaBtn");
+	array = parentDiv.getElementsByClassName("checkRadio");
 
-  console.log(i)
-
-	if (i) {
-		radioBtnScelto = checkIndexRadio(radioBtnArray, i, parentDiv);
-		checked = true;
-		//labels
-		let labelRadioBtnArray = Array.from(
-			parentDiv.getElementsByClassName("checkRadioLabel")
-		);
-		labelRadioBtnArray[i].classList.add("checkRadioChecked");
-
-		if (radioBtnScelto.name === "numDomande") {
-			valueDomande = radioBtnScelto.value;
-			inputChecked = radioBtnScelto;
-		}
-		if (radioBtnScelto.name === "difficoltà") {
-			difficoltà = radioBtnScelto.value;
-			console.log(difficoltà);
-		}
-		if (radioBtnScelto.name === "risposta") {
-			if (radioBtnScelto.checked) {
-				return (giusto = labelRadioBtnArray[i]);
-			}
-		}
-	} else {
-		checked = false;
-		return;
+	// in base nome del parent mi cambia il valore del prescelto
+	switch (parentId) {
+		case "sceltaDifficolta":
+			return (difficoltà = array[i].value);
+		case "sceltaDomande":
+      checked = true;
+			return (valueDomande = array[i]);
+		case "contenitore-risposte":
+			nextBtn.removeAttribute("disabled");
+			return (giusto = array[i].value);
 	}
 }
+//funzione per "trovare" la label del prescelto
+function suddivisioneLabel(parentId, i) {
+	let parentDiv = document.getElementById(parentId);
+	arrayLabels = parentDiv.getElementsByClassName("checkRadioLabel");
 
-function checkIndexRadio(radioBtnArray, i, parentDiv) {
-	if (i >= 0 && i < radioBtnArray.length) {
-		// Rimuovi la classe "checkRadioChecked" da tutti gli elementi
-		Array.from(parentDiv.getElementsByClassName("checkRadioLabel")).forEach(
-			(label) => {
-				label.classList.remove("checkRadioChecked");
-			}
-		);
-
-		btnScelto = radioBtnArray[i];
-		return btnScelto;
+	//in base al nome del paret mi cambia il valore del prescelto
+	switch (parentId) {
+		case "sceltaDifficolta":
+			return (difficoltaLabel = arrayLabels[i]);
+		case "sceltaDomande":
+			return (valueDomandeLabel = arrayLabels[i]);
+		case "contenitore-risposte":
+			return (giustoLabel = arrayLabels[i]);
 	}
 }
+//funzione per rimuovere il check dalle box non usate.
+function cambioColoreLabel(parentId) {
+	let parentDiv = document.getElementById(parentId);
+	arrayLabels = Array.from(parentDiv.getElementsByClassName("checkRadioLabel"));
 
-//funzione preparazione array domande.///////////////////////
-
-//array è l'array di domande, num è il quantitativo preso poi con un input.number
-function preparazioneDomande(array, num) {
-	let domande = [];
-
-	if (num > array.length) {
-		console.error(
-			"Il numero richiesto di domande supera la lunghezza dell'array delle domande."
-		);
-		return array; // ritorna tutto l'array di domande disponibili
-	}
-	// array domande - difficoltà
-	let domandeDifficoltà = [];
-
-	console.log(difficoltà);
-	array.forEach((element) => {
-		if (element.difficulty == difficoltà) {
-			domandeDifficoltà.push(element);
-		}
+	//rimuovo se c'è il checkRadioChecked
+	arrayLabels.forEach((element) => {
+		element.classList.remove("checkRadioChecked");
 	});
+	return;
+}
+//fine
 
-	while (domande.length < num) {
-		let randomNum = Math.floor(Math.random() * domandeDifficoltà.length);
+///////////// funzione creazione array in base alla difficoltà
+function preparazioneDomande(array) {
+	domandeDifficoltà = arrayDomandeDifficoltà(array)
+	return domande = arrayDomandeEffettivo(domandeDifficoltà)
+}
 
+//funzioni preparazioneDomande
+function arrayDomandeDifficoltà(array){
+  let domandeDifficoltà= []
+//creazione Array in base alla difficoltà
+array.forEach((element) => {
+  if (element.difficulty == difficoltà) {
+    domandeDifficoltà.push(element);
+  }
+});
+return domandeDifficoltà
+}
+function arrayDomandeEffettivo(array){
+  let domande = [];
+
+  //push delle domande nell'array di gioco in modo randomico
+  while (domande.length < valueDomande.value) {
+		let randomNum = Math.floor(Math.random() * array.length);
 		// prendere domande random in base alla difficoltà
-		if (!domande.includes(domandeDifficoltà[randomNum])) {
-			domande.push(domandeDifficoltà[randomNum]);
+		if (!domande.includes(array[randomNum])) {
+			domande.push(array[randomNum]);
 		}
 	}
-	return domande;
+  return domande
 }
+//fine
 
-function checkDifficoltà() {
-	let sceltaDifficoltà = document.querySelectorAll("#sceltaDifficolta input");
 
-	sceltaDifficoltà.forEach((element) => {
-		if (element.checked) {
-			diffCheck = true;
-		} else {
-			return;
-		}
-	});
-}
-
-//funzione inizio delle domande
-
+///////////////funzione inizio delle domande
 function inizioDomande() {
-	//check difficoltà
-	checkDifficoltà();
-
-	let preStart = document.getElementById("pre-start");
-	let cDomande = document.getElementById("contenitore-domande");
-
-	//check quante domande vuoi (in realtà penso di modificarlo in base alla difficoltà)
-	let value = checkValue();
-
-	if (!diffCheck || !value) {
-		alert("scegli una difficoltà");
+	//rapido check per vedere se c'è tutto! e preparazione domande
+	if (!difficoltà || !valueDomande.value) {
+		alert("Scegli la tua difficoltà e quante domande!");
 		return;
-	}
-	if (value !== "") {
-		//rendi il pre-start invisibile
-		preStart.style.display = "none";
-		//rendi il contenitore domande visibile
-		cDomande.style.display = "block";
-
-		//rendere il contenitore visibile
-		let contenitore = document.getElementById("contenitore-domande");
-		contenitore.style.opacity = "1";
-
+	} else {
+		preparazioneStyle();
 		//creazione array Domande
-		domande = preparazioneDomande(questions, value);
-		//prossima domanda
+		domande = preparazioneDomande(questions);
+		//push Prima domanda
 		nextQuestion(domande);
 		return;
 	}
-	//se non è stato stato segnato niente in quante domande manda una notifica a riguardo.
-	console.log("inserisci un numero valido");
-	return;
+}
+//funzioni inizioDomande
+function preparazioneStyle() {
+	//prendiamo il div pre-start e il div contenitore-domande
+	let preStart = document.getElementById("pre-start");
+	let cDomande = document.getElementById("contenitore-domande");
+
+	//rendi il pre-start invisibile
+	preStart.style.display = "none";
+	//rendi il contenitore domande visibile
+	cDomande.style.display = "block";
+	//rendere il contenitore visibile
+	let contenitore = document.getElementById("contenitore-domande");
+	contenitore.style.opacity = "1";
 }
 
-//funzione per avere un tot definito dall'utente di domande (da cambiare probabilmente in base alla difficoltà)
-function checkValue() {
-	console.log(valueDomande);
-	return (value = parseInt(valueDomande));
-}
-
-let inputChecked;
 
 //funzione next question per "settare" la nuova domanda prende l'array domande come valore.
-
 function nextQuestion(array) {
-	console.log(counter);
-	//prendiamo il bottone NEXT
-	let nextBtn = document.getElementById("prossimaBtn");
-
-	//prendiamo il contatore domande e modifichiamo il testo in base alle domande
-	let questionCounter = document.getElementById("contatoreDomande");
-	questionCounter.textContent = "";
-
-	//counter è il numero di domande attuali
-	questionCounter.innerHTML = counter + " / " + domande.length;
-	// clearInterval(timer);
+	setBtn();
+	counterText();
 
 	if (counter < array.length && !gameOver) {
-		//settiamo  testo della domanda
-		testoDomanda = document.getElementById("testoDomanda");
+		setTestoDomanda(array);
+    setArrayRisposte(array);
+    setLabelsRisposte();
 
-		testoDomanda.innerHTML = array[counter].question;
-
-		//settiamo risposte
-		risposte = [];
-
-		//push domande positive
-		risposte.push(array[counter].correct_answer);
-
-		//push domande negative
-		for (let i = 0; i < array[counter].incorrect_answers.length; i++) {
-			risposte.push(array[counter].incorrect_answers[i]);
-		}
-
-		//qui ci starebbe uno shuffle
-		shuffleArray(risposte);
-
-		// prendiamo le varie label
-		let labelRisposteArray = document.querySelectorAll(
-			"#contenitore-risposte label"
-		);
-		let inputs = document.querySelectorAll("#contenitore-risposte input");
-
-		nextBtn.style.opacity = "1";
-
-		//aggiungere il testo delle risposte ai label
-		for (let i = 0; i < inputs.length; i++) {
-			//resetto il checked
-			inputs[i].checked = false;
-
-			labelRisposteArray[i].textContent = risposte[i];
-
-			if (labelRisposteArray[i].textContent.length === 0) {
-				labelRisposteArray[i].style.display = "none";
-			} else {
-				labelRisposteArray[i].style.display = "inlineBlock";
-			}
-		}
-		return risposte;
+    return risposte;
 	} else {
 		gameOver = true;
-		//timerstop
 		endScreen();
 	}
 }
-
+//funzioni nextQeustion
+function setBtn() {
+	//prendiamo il bottone NEXT e lo rendiamo visibile
+	let nextBtn = document.getElementById("prossimaBtn");
+	nextBtn.style.opacity = "1";
+}
+function counterText() {
+	//prendiamo il contatore domande e modifichiamo il testo in base alle domande
+	let questionCounter = document.getElementById("contatoreDomande");
+	questionCounter.textContent = "";
+	//counter è il numero di domande attuali
+	questionCounter.innerHTML = counter + " / " + domande.length;
+}
+function setTestoDomanda(array) {
+	//settiamo  testo della domanda
+	testoDomanda = document.getElementById("testoDomanda");
+	testoDomanda.innerHTML = array[counter].question;
+}
+function setArrayRisposte(array) {
+	//settiamo array risposte
+	risposte = [];
+	//push risposte positive
+	risposte.push(array[counter].correct_answer);
+	//push risposte negative
+	for (let i = 0; i < array[counter].incorrect_answers.length; i++) {
+		risposte.push(array[counter].incorrect_answers[i]);
+	}
+	//qui ci starebbe uno shuffle
+	return shuffleArray(risposte);
+}
 function shuffleArray(array) {
 	for (var i = array.length - 1; i > 0; i--) {
 		var j = Math.floor(Math.random() * (i + 1));
@@ -719,100 +587,123 @@ function shuffleArray(array) {
 	}
 	return array;
 }
+function setLabelsRisposte(){
+	// prendiamo arrayLabel
+  let labelRisposteArray = document.querySelectorAll("#contenitore-risposte label");
+  //array inputs (per length)
+  let inputs = document.querySelectorAll("#contenitore-risposte input");
 
-let rispostaCorrettaIndex;
-let rispostaData;
-
-function checkIfRight() {
-	if (!gameOver) {
-		let answers = document.querySelectorAll("#contenitore-risposte input");
-		let rispostaCorretta = domande[counter].correct_answer;
-		rispostaCorrettaIndex = risposte.indexOf(rispostaCorretta);
-		rispostaData = "";
-
-		if (!checked) {
-			arrayRisposteSbagliate.push([domande[counter]]);
-			return;
-		} else {
-			answers.forEach((answer) => {
-				if (answer.checked) {
-					rispostaData = answer.value;
-					changeColor(rispostaData, rispostaCorrettaIndex);
-				}
-			});
-			if (rispostaData == rispostaCorrettaIndex) {
-				arrayRisposteCorrette.push([
-					domande[counter].question,
-					domande[counter].correct_answer,
-				]);
-
-				console.log(Number(rispostaCorrettaIndex));
-				changeColor(rispostaData, rispostaCorrettaIndex);
-
-				console.log("Risposta corretta");
-				//change corret answer to green
-			} else {
-				arrayRisposteSbagliate.push([domande[counter]]);
-				changeColor(rispostaData, rispostaCorrettaIndex);
-				console.log("Risposta sbagliata");
-				// check wrong answer to red
-			}
-		}
-	}
+  //aggiungere il testo delle risposte ai label
+  for (let i = 0; i < inputs.length; i++) {
+    labelRisposteArray[i].textContent = risposte[i];
+    if (labelRisposteArray[i].textContent.length === 0) {
+      labelRisposteArray[i].style.display = "none";
+    } else {
+      labelRisposteArray[i].style.display = "inlineBlock";
+    }}
 }
+//fine 
+
+// funzione per verificare se la risposta data è corretta o sbagliata
+let rispostaCorrettaIndex;
+let rispostaData 
+
+function checkIfRight(){
+  //prendiamo gli elementi necessari
+  rispostaData = takingAnswer()
+  
+	let rispostaCorretta = domande[counter].correct_answer;
+	rispostaCorrettaIndex = risposte.indexOf(rispostaCorretta);
+
+    if (rispostaData.value == rispostaCorrettaIndex) {
+      arrayRisposteCorrette.push([
+        domande[counter].question,
+        domande[counter].correct_answer,
+      ]);
+      console.log("Risposta corretta");
+      changeColor(rispostaData.value, rispostaCorrettaIndex)
+      //change corret answer to green
+    } else {
+      arrayRisposteSbagliate.push([domande[counter]]);
+      changeColor(rispostaData, rispostaCorrettaIndex);
+      console.log("Risposta sbagliata");
+      // check wrong answer to red
+    }
+  }
+
+function takingAnswer(){
+    let answers = document.querySelectorAll("#contenitore-risposte input");
+    answers.forEach((answer) => {
+      if (answer.checked) {
+        rispostaData = answer;
+        // changeColor(rispostaData, rispostaCorrettaIndex);
+    }});
+    return rispostaData
+  }
 
 function changeColor(rispostaData, rispostaCorrettaIndex) {
-	//prendo l'indice risposta
+  parentDiv = document.getElementById("contenitore-risposte")
+	arrayLabels = parentDiv.getElementsByClassName("checkRadioLabel")
+  console.log(arrayLabels)
+  labelRispostaData = arrayLabels[rispostaData.value]
 
-	if (checked) {
-		labelCheck = selectRadio("contenitore-risposte", rispostaData);
-		labelCheck.classList.remove("checkRadioChecked");
-		//check di risposta colore
-		if (rispostaData == rispostaCorrettaIndex) {
-			if (labelCheck.classList.contains("green")) {
-				labelCheck.classList.remove("green");
-				return;
-			} else {
-				labelCheck.classList.add("green");
-				return;
-			}
-		}
-		if (rispostaData != rispostaCorrettaIndex) {
-			if (labelCheck.classList.contains("red")) {
-				labelCheck.classList.remove("red");
-				return;
-			} else {
-				labelCheck.classList.add("red");
-				return;
-			}
-		}
-	} else {
-		return;
-	}
+  console.log(labelRispostaData)
+
+  if(labelRispostaData.classList.contains("checkRadioChecked")){
+    console.log("ciao")
+  }
+
+	// if (labelRispostaData.classList.contains("checkRadioChecked")) {
+	// 	labelRispostaData.classList.remove("checkRadioChecked");
+  //   return
+  // } else {
+  //   if (rispostaData == rispostaCorrettaIndex) {
+	// 		if (labelRispostaData.classList.contains("green")) {
+	// 			labelRispostaData.classList.remove("green");
+	// 			return;
+	// 		} else {
+	// 			labelRispostaData.classList.add("green");
+	// 			return;
+	// 		}
+	// 	}else{
+  //     if (labelRispostaData.classList.contains("red")) {
+  //     labelRispostaData.classList.remove("red");
+  //     return;
+  //   } else {
+  //     labelRispostaData.classList.add("red");
+  //     return;
+  //   }
+  //   }
+	// }
 }
+
+
+
+
+
+
+
 
 //funzione pulsante next
 let nextBtn = document.getElementById("prossimaBtn");
 nextBtn.addEventListener("click", function () {
 	checkIfRight();
-	if (!checked) {
-		return;
-	}else{
-    timerStop = true;
-    if (!cliccato) {
-      changeColor(rispostaData, rispostaCorrettaIndex);
-      setTimeout(() => {
-        resetTimer(), changeColor(rispostaData, rispostaCorrettaIndex);
-      }, 2000);
-    }
-    cliccato = true;
-  }
+	timerStop = true;
+	if (!cliccato) {
+		changeColor(rispostaData, rispostaCorrettaIndex);
+		setTimeout(() => {
+			resetTimer()
+      , changeColor(rispostaData, rispostaCorrettaIndex);
+		}, 2000);
+		nextBtn.setAttribute("disabled", "");
+	}
+	cliccato = true;
 });
 
 // convertire in %
 
 function convertiInPercentuale(numero, totale) {
-	// Moltiplica per 100 per ottenere la percentuale e aggiungi il simbolo percentuale
+	// ottiamo la percentuale
 	var percentuale = (numero / totale) * 100 + "%";
 	return percentuale;
 }
