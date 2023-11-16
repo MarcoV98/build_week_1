@@ -600,8 +600,6 @@ function checkValue(){
 
 //funzione next question per "settare" la nuova domanda prende l'array domande come valore.
 
-
-
 function nextQuestion(array){
   console.log(counter)
   //prendiamo il bottone NEXT
