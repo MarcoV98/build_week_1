@@ -102,6 +102,11 @@ label {
   background: linear-gradient(to right bottom, #D20094, #900080);
 }
 
+.green{
+  background-color: green;
+}
+
+
 #endScreen{
   display: none;
 }
@@ -114,9 +119,6 @@ label {
   margin-right: auto;
   max-width: 1600px;
 }
-
-
-
 
 .timer {
     position: fixed;
@@ -168,3 +170,5 @@ label {
   fill: white;
   font-size: 3.5rem;
 }
+
+

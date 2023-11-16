@@ -425,9 +425,11 @@ function runTimer(timerElement) {
 	timerElement.classList.add("animatable");
 	timerCircle.style.strokeDashoffset = 1;
 
+  
 	let countdownTimer = setInterval(function () {
+    console.log(timerStop)
+
 		if (isTimeLeft()) {
-			console.log("banane");
 			const timeRemaining = timeLeft--;
 			const normalizedTime = (60 - timeRemaining) / 60;
 			timerCircle.style.strokeDashoffset = normalizedTime;
@@ -435,23 +437,24 @@ function runTimer(timerElement) {
 		} else {
 			resetTimer();
 		}
+    if (timerStop) {
+      clearInterval(countdownTimer);
+      timerElement.classList.remove("animatable");
+      timerStop = false;
+    }
 	}, 1000);
-
-	if (timerStop) {
-		clearInterval(countdownTimer);
-		timerElement.classList.remove("animatable");
-		timerStop = false;
-	}
 }
 
 function resetTimer() {
-	timerStop = true;
 	timeLeft = 60;
 	runTimer(document.querySelector(".timer"));
 	questionNumber();
 	nextQuestion(domande);
 }
 
+function questionNumber(){
+  return counter++ ;
+ }
 
 // bottone inizio 
 let startBtn = document.getElementById("startBtn")
@@ -493,6 +496,12 @@ function selectRadio(parentId, i) {
         difficoltà = radioBtnArray[i].value;
         console.log(difficoltà)
       }
+      if(radioBtnArray[i].name === "risposta"){
+        if(radioBtnArray[i].checked){
+          return giusto = labelRadioBtnArray[i]
+        }
+        
+      }
   }
 }
 }
@@ -531,11 +540,7 @@ function preparazioneDomande (array,num){
 function checkDifficoltà(){
   let sceltaDifficoltà = document.querySelectorAll("#sceltaDifficolta input")
 
-  console.log(sceltaDifficoltà)
-
   sceltaDifficoltà.forEach(element => {
-    console.log(element.checked)
-
     if(element.checked){
       diffCheck = true;
     }
@@ -551,17 +556,17 @@ function inizioDomande(){
   //check difficoltà
   checkDifficoltà();
 
-  if(!diffCheck){
-    alert("scegli una difficoltà")
-    return
-  }
-
-
+  
   let preStart = document.getElementById("pre-start")
   let cDomande = document.getElementById("contenitore-domande")
 
    //check quante domande vuoi (in realtà penso di modificarlo in base alla difficoltà)
   let value = checkValue();
+
+  if(!diffCheck || !value){
+    alert("scegli una difficoltà")
+    return
+  }
   if(value !== ""){
     
   //rendi il pre-start invisibile
@@ -598,6 +603,7 @@ function checkValue(){
 
 
 function nextQuestion(array){
+  console.log(counter)
   //prendiamo il bottone NEXT
   let nextBtn = document.getElementById("prossimaBtn")
 
@@ -607,15 +613,13 @@ function nextQuestion(array){
 
   //counter è il numero di domande attuali
   questionCounter.innerHTML = counter + " / " + domande.length
-  clearInterval(timer);
+  // clearInterval(timer);
 
   if(counter<array.length && !gameOver){
     //settiamo  testo della domanda 
     testoDomanda = document.getElementById("testoDomanda")
 
     testoDomanda.innerHTML = array[counter].question;
-
-    console.log(testoDomanda)
 
     //settiamo risposte 
     risposte = []
@@ -669,11 +673,15 @@ function shuffleArray(array){
   return array;
 }
 
+
+let rispostaCorrettaIndex;
+
+
 function checkIfRight() {
   if (!gameOver) {
     let answers = document.querySelectorAll("#contenitore-risposte input");
     let rispostaCorretta = domande[counter].correct_answer;
-    let rispostaCorrettaIndex = risposte.indexOf(rispostaCorretta)
+    rispostaCorrettaIndex = risposte.indexOf(rispostaCorretta)
     let rispostaData = "";
 
     answers.forEach(answer => {
@@ -683,24 +691,43 @@ function checkIfRight() {
     })
     if (rispostaData == rispostaCorrettaIndex) {
       arrayRisposteCorrette.push([domande[counter].question, domande[counter].correct_answer])
+
+      console.log(Number(rispostaCorrettaIndex))
+      changeColor(rispostaCorrettaIndex);
+      
       console.log("Risposta corretta");
+      //change corret answer to green
     } else {
       arrayRisposteSbagliate.push([domande[counter]])
       //per mostrare la risposta data devo smanettare 
       console.log("Risposta sbagliata");
+      // check wrong answer to red
     }
-    counter++; // Incrementa il contatore delle domande
+  }
+  
+}
+
+function changeColor(rispostaCorrettaIndex){
+  //prendo l'array dei label
+  giusto = selectRadio('contenitore-risposte', rispostaCorrettaIndex );
+
+  if(giusto.classList.contains("green")){
+    giusto.classList.add("checkRadioChecked")
+    giusto.classList.remove("green")
+    return
+  }else{
+    giusto.classList.add("green")
+    giusto.classList.remove("checkRadioChecked")
+    return
   }
 }
-function questionNumber(){
-  return counter++;
- }
 
 //funzione pulsante next
 let nextBtn = document.getElementById("prossimaBtn");
 nextBtn.addEventListener("click",function(){
   checkIfRight();
-  resetTimer();
+  timerStop = true;
+  setTimeout(()=> {resetTimer(),changeColor(rispostaCorrettaIndex)},3000)
 })
 
 // convertire in %
