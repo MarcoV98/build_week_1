@@ -606,7 +606,7 @@ function nextQuestion(array){
   questionCounter.textContent = ""
 
   //counter è il numero di domande attuali
-  questionCounter.innerHTML = counter + " / " + domande.length
+  questionCounter.innerHTML = "QUESTION: " + counter + "<span id='colorCounter'>" + " / " + domande.length + "</span>"
   clearInterval(timer);
 
   if(counter<array.length && !gameOver){
