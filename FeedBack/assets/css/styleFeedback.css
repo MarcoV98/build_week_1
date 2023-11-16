@@ -18,6 +18,7 @@ header img {
 
 main{
     text-align: center;
+    margin-top: 6rem;
 
 }
 
@@ -32,32 +33,22 @@ main{
     border: none;
     color: rgb(255, 255, 255);
     float: left;
+    margin-right: 15%;
     margin-left: 15%;
-    margin-top: 20px;
+    margin-top: 1rem;
     font-size: medium;
+    border-bottom: 2px solid #900080;
+    padding-bottom: 1rem;
 
 
 }
 
-#info{
-    background-color: #00FFFF;
-    width: 12%;
-    padding: 15px 32px;
-    text-align: center;
-    display: block;
-    font-size: 20px;
-    margin: 4px 2px;
-    cursor: pointer;
-    color: black;
-    margin-left: auto;
-    margin-right: auto;
-    font-weight: 700;
-}
 
 hr{
-    border: 1px solid #900080;
+    display: none;
+    /* border: 1px solid #900080;
     margin-left: 11rem;
-    margin-right: 11rem;
+    margin-right: 11rem;*/
 }
 
 .bottoneContenitore{
@@ -67,9 +58,6 @@ hr{
     width: 14rem;
     height: 3.5rem;
     display: flex;
-    
-
-
 }
 
 .bottone{
