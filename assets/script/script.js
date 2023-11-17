@@ -599,11 +599,9 @@ function setLabelsRisposte() {
 
 	//aggiungere il testo delle risposte ai label
 	for (let i = 0; i < inputs.length; i++) {
-    console.log("sono qui")
     labelRisposteArray[i].style.display = "inline-block";
 
 		labelRisposteArray[i].textContent = risposte[i];
-    console.log(labelRisposteArray[i].textContent.length)
 
 		if (labelRisposteArray[i].textContent.length == 0) {
 			labelRisposteArray[i].style.display = "none";
