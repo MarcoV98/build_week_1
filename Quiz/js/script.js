@@ -732,7 +732,7 @@ nextBtn.addEventListener("click",function(){
 
 function convertiInPercentuale(numero,totale) {
   // Moltiplica per 100 per ottenere la percentuale e aggiungi il simbolo percentuale
-  var percentuale = (numero/totale) * 100 + "%";
+  var percentuale = (numero/totale) * 100;
   return percentuale;
 }
 
@@ -756,6 +756,7 @@ function endScreen(){
   corrette100 = convertiInPercentuale(arrayRisposteCorrette.length,domande.length)
   let testoC100 = document.getElementById("testoCorrette")
   console.log(testoC100)
+  cambioTestoCiambella(corrette100);
 
   testoC100.innerHTML= corrette100;
 
@@ -804,4 +805,11 @@ function creazioneCiambella(data1, data2){
       data: data,
       options: options
   })
+}
+
+function cambioTestoCiambella(argomento){
+  if(argomento < 60){
+    myH3 = document.querySelector(".feed h3");
+    myH3.innerHTML = `Failed! <br> <span>You failed the exam.</span>`;
+  }
 }
