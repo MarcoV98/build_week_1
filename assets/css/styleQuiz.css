@@ -29,6 +29,12 @@ h2{
   margin-top: 2rem;
 }
 
+
+#startBtn:active {
+  position:relative;
+  top:2px;
+}
+
 /*js related stuff */
 #pre-start {
   display: block;
@@ -36,7 +42,7 @@ h2{
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 6em;
+  
 }
 
 #pre-start h2{
@@ -69,7 +75,7 @@ label {
 }
 
 #contatoreDomande {
-  margin-top: 15rem;
+  margin-top: 5rem;
   color: white;
 }
 
