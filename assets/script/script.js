@@ -557,9 +557,10 @@ function setBtn() {
 function counterText() {
 	//prendiamo il contatore domande e modifichiamo il testo in base alle domande
 	let questionCounter = document.getElementById("contatoreDomande");
-	questionCounter.textContent = "";
+	questionCounter.textContent = " ";
+  counterDomande = (counter)+1
 	//counter è il numero di domande attuali
-	questionCounter.innerHTML = "QUESTION: " + counter + "<span class='pink'>" + " / " + domande.length + "</span>";
+	questionCounter.innerHTML = "QUESTION: " + counterDomande + "<span class='pink'>" + " / " + domande.length + "</span>";
 }
 function setTestoDomanda(array) {
 	//settiamo  testo della domanda
@@ -598,11 +599,9 @@ function setLabelsRisposte() {
 
 	//aggiungere il testo delle risposte ai label
 	for (let i = 0; i < inputs.length; i++) {
-    console.log("sono qui")
     labelRisposteArray[i].style.display = "inline-block";
 
 		labelRisposteArray[i].textContent = risposte[i];
-    console.log(labelRisposteArray[i].textContent.length)
 
 		if (labelRisposteArray[i].textContent.length == 0) {
 			labelRisposteArray[i].style.display = "none";
