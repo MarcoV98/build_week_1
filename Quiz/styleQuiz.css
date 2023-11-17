@@ -4,12 +4,15 @@ main {
 
 h1{
   line-height: 1.2em;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
+  margin-top: 35px;
+  
 }
 
 h2{
   font-size: 40px;
   color: white;
+  
 }
 
 
@@ -33,7 +36,7 @@ h2{
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 15vh;
+  margin-top: 35px;
 }
 
 #pre-start h2{
@@ -41,7 +44,7 @@ h2{
   font-weight: 400;
   color: white;
   font-size: 75px;
-  margin-top: 5rem;
+  margin-top: 13px;
   margin-bottom: 2rem;
 }
 
@@ -68,7 +71,7 @@ label {
 }
 
 #contatoreDomande {
-  margin-top: 10rem;
+  margin-top: 2rem;
   color: white;
 
 }
@@ -79,7 +82,7 @@ label {
   font-size: 3rem;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
 }
 
 #prossimaBtn {
@@ -92,7 +95,7 @@ label {
   font-weight: bold;
   cursor: pointer;
   border-radius: 8%;
-  margin-top: 4rem;
+  margin-top: 1rem;
 }
 
 /* #counterStyle {
@@ -111,8 +114,24 @@ label {
   background-color: green;
 }
 
+.red{
+  background-color: red;
+}
+
 #endScreen{
   display: none;
+}
+
+#sceltaDifficolta{
+  display: flex;
+  margin-bottom: 59px;
+}
+
+#sceltaDomande{
+  display: flex;
+  margin-bottom: 40px;
+  margin-top: 4rem;
+
 }
 
 #contenitore-domande{
