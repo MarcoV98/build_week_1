@@ -371,7 +371,6 @@ function runTimer(timerElement) {
 	timerCircle.style.strokeDashoffset = 1;
 
 	let countdownTimer = setInterval(function () {
-
 		if (isTimeLeft()) {
 			const timeRemaining = timeLeft--;
 			const normalizedTime = (60 - timeRemaining) / 60;
@@ -418,7 +417,7 @@ function selectRadio(parentId, i) {
 	cambioColoreLabel(parentId, presceltoLabel);
 	presceltoLabel.classList.add("checkRadioChecked");
 
-  return prescelto
+	return prescelto;
 }
 
 //funzioni selectRadio
@@ -433,7 +432,7 @@ function suddivisione(parentId, i) {
 		case "sceltaDifficolta":
 			return (difficoltà = array[i].value);
 		case "sceltaDomande":
-      checked = true;
+			checked = true;
 			return (valueDomande = array[i]);
 		case "contenitore-risposte":
 			nextBtn.removeAttribute("disabled");
@@ -470,36 +469,35 @@ function cambioColoreLabel(parentId) {
 
 ///////////// funzione creazione array in base alla difficoltà
 function preparazioneDomande(array) {
-	domandeDifficoltà = arrayDomandeDifficoltà(array)
-	return domande = arrayDomandeEffettivo(domandeDifficoltà)
+	domandeDifficoltà = arrayDomandeDifficoltà(array);
+	return (domande = arrayDomandeEffettivo(domandeDifficoltà));
 }
 
 //funzioni preparazioneDomande
-function arrayDomandeDifficoltà(array){
-  let domandeDifficoltà= []
-//creazione Array in base alla difficoltà
-array.forEach((element) => {
-  if (element.difficulty == difficoltà) {
-    domandeDifficoltà.push(element);
-  }
-});
-return domandeDifficoltà
+function arrayDomandeDifficoltà(array) {
+	let domandeDifficoltà = [];
+	//creazione Array in base alla difficoltà
+	array.forEach((element) => {
+		if (element.difficulty == difficoltà) {
+			domandeDifficoltà.push(element);
+		}
+	});
+	return domandeDifficoltà;
 }
-function arrayDomandeEffettivo(array){
-  let domande = [];
+function arrayDomandeEffettivo(array) {
+	let domande = [];
 
-  //push delle domande nell'array di gioco in modo randomico
-  while (domande.length < valueDomande.value) {
+	//push delle domande nell'array di gioco in modo randomico
+	while (domande.length < valueDomande.value) {
 		let randomNum = Math.floor(Math.random() * array.length);
 		// prendere domande random in base alla difficoltà
 		if (!domande.includes(array[randomNum])) {
 			domande.push(array[randomNum]);
 		}
 	}
-  return domande
+	return domande;
 }
 //fine
-
 
 ///////////////funzione inizio delle domande
 function inizioDomande() {
@@ -531,7 +529,6 @@ function preparazioneStyle() {
 	contenitore.style.opacity = "1";
 }
 
-
 //funzione next question per "settare" la nuova domanda prende l'array domande come valore.
 function nextQuestion(array) {
 	setBtn();
@@ -539,10 +536,10 @@ function nextQuestion(array) {
 
 	if (counter < array.length && !gameOver) {
 		setTestoDomanda(array);
-    setArrayRisposte(array);
-    setLabelsRisposte();
+		setArrayRisposte(array);
+		setLabelsRisposte();
 
-    return risposte;
+		return risposte;
 	} else {
 		gameOver = true;
 		endScreen();
@@ -587,102 +584,101 @@ function shuffleArray(array) {
 	}
 	return array;
 }
-function setLabelsRisposte(){
+function setLabelsRisposte() {
 	// prendiamo arrayLabel
-  let labelRisposteArray = document.querySelectorAll("#contenitore-risposte label");
-  //array inputs (per length)
-  let inputs = document.querySelectorAll("#contenitore-risposte input");
+	let labelRisposteArray = document.querySelectorAll(
+		"#contenitore-risposte label"
+	);
+	//array inputs (per length)
+	let inputs = document.querySelectorAll("#contenitore-risposte input");
 
-  //aggiungere il testo delle risposte ai label
-  for (let i = 0; i < inputs.length; i++) {
-    labelRisposteArray[i].textContent = risposte[i];
-    if (labelRisposteArray[i].textContent.length === 0) {
-      labelRisposteArray[i].style.display = "none";
-    } else {
-      labelRisposteArray[i].style.display = "inlineBlock";
-    }}
+	//aggiungere il testo delle risposte ai label
+	for (let i = 0; i < inputs.length; i++) {
+		labelRisposteArray[i].textContent = risposte[i];
+		if (labelRisposteArray[i].textContent.length === 0) {
+			labelRisposteArray[i].style.display = "none";
+		} else {
+			labelRisposteArray[i].style.display = "inlineBlock";
+		}
+	}
 }
-//fine 
+//fine
 
 // funzione per verificare se la risposta data è corretta o sbagliata
 let rispostaCorrettaIndex;
-let rispostaData 
+let rispostaData;
+let boaleanCorretta;
 
-function checkIfRight(){
-  //prendiamo gli elementi necessari
-  rispostaData = takingAnswer()
-  
+function checkIfRight() {
+	//prendiamo gli elementi necessari
+	rispostaData = takingAnswer();
+
 	let rispostaCorretta = domande[counter].correct_answer;
 	rispostaCorrettaIndex = risposte.indexOf(rispostaCorretta);
 
-    if (rispostaData.value == rispostaCorrettaIndex) {
-      arrayRisposteCorrette.push([
-        domande[counter].question,
-        domande[counter].correct_answer,
-      ]);
-      console.log("Risposta corretta");
-      changeColor(rispostaData.value, rispostaCorrettaIndex)
-      //change corret answer to green
-    } else {
-      arrayRisposteSbagliate.push([domande[counter]]);
-      changeColor(rispostaData, rispostaCorrettaIndex);
-      console.log("Risposta sbagliata");
-      // check wrong answer to red
-    }
-  }
-
-function takingAnswer(){
-    let answers = document.querySelectorAll("#contenitore-risposte input");
-    answers.forEach((answer) => {
-      if (answer.checked) {
-        rispostaData = answer;
-        // changeColor(rispostaData, rispostaCorrettaIndex);
-    }});
-    return rispostaData
-  }
-
-function changeColor(rispostaData, rispostaCorrettaIndex) {
-  parentDiv = document.getElementById("contenitore-risposte")
-	arrayLabels = parentDiv.getElementsByClassName("checkRadioLabel")
-  console.log(arrayLabels)
-  labelRispostaData = arrayLabels[rispostaData.value]
-
-  console.log(labelRispostaData)
-
-  if(labelRispostaData.classList.contains("checkRadioChecked")){
-    console.log("ciao")
-  }
-
-	// if (labelRispostaData.classList.contains("checkRadioChecked")) {
-	// 	labelRispostaData.classList.remove("checkRadioChecked");
-  //   return
-  // } else {
-  //   if (rispostaData == rispostaCorrettaIndex) {
-	// 		if (labelRispostaData.classList.contains("green")) {
-	// 			labelRispostaData.classList.remove("green");
-	// 			return;
-	// 		} else {
-	// 			labelRispostaData.classList.add("green");
-	// 			return;
-	// 		}
-	// 	}else{
-  //     if (labelRispostaData.classList.contains("red")) {
-  //     labelRispostaData.classList.remove("red");
-  //     return;
-  //   } else {
-  //     labelRispostaData.classList.add("red");
-  //     return;
-  //   }
-  //   }
-	// }
+	if (rispostaData.value == rispostaCorrettaIndex) {
+		arrayRisposteCorrette.push([
+			domande[counter].question,
+			domande[counter].correct_answer,
+		]);
+		console.log("Risposta corretta");
+		boaleanCorretta = true;
+		//change corret answer to green
+		changeColor(rispostaCorrettaIndex, boaleanCorretta);
+	} else {
+		arrayRisposteSbagliate.push([domande[counter]]);
+		console.log("Risposta sbagliata");
+		boaleanCorretta = false;
+		// check wrong answer to red
+		changeColor(rispostaCorrettaIndex, boaleanCorretta);
+	}
 }
 
+function takingAnswer() {
+	let answers = document.querySelectorAll("#contenitore-risposte input");
+	answers.forEach((answer) => {
+		if (answer.checked) {
+			rispostaData = answer;
+			// changeColor(rispostaData, rispostaCorrettaIndex);
+		}
+	});
+	return rispostaData;
+}
 
+let giustoLabel;
 
+function changeColor(rispostaCorrettaIndex, result) {
+	labelRispostaData = arrayLabels[rispostaCorrettaIndex];
 
+	if (result) {
+		addSpecificColor(giustoLabel, "green");
+	}
+	if (!result) {
+		addSpecificColor(giustoLabel, "red");
+	}
+}
+function addSpecificColor(id, color) {
+	if (id.classList.contains("checkRadioChecked")) {
+		id.classList.add(color);
+		id.classList.remove("checkRadioChecked");
+		return;
+	}
+}
+function removeColor() {
+	parentDiv = document.getElementById("contenitore-risposte");
+	arrayLabels = Array.from(parentDiv.getElementsByClassName("checkRadioLabel"));
 
-
-
+	removeSpecificColor("green");
+	removeSpecificColor("red");
+}
+function removeSpecificColor(color) {
+	arrayLabels.forEach((element) => {
+		if (element.classList.contains(color)) {
+			element.classList.remove(color);
+			return;
+		}
+	});
+}
 
 //funzione pulsante next
 let nextBtn = document.getElementById("prossimaBtn");
@@ -690,66 +686,38 @@ nextBtn.addEventListener("click", function () {
 	checkIfRight();
 	timerStop = true;
 	if (!cliccato) {
-		changeColor(rispostaData, rispostaCorrettaIndex);
 		setTimeout(() => {
-			resetTimer()
-      , changeColor(rispostaData, rispostaCorrettaIndex);
+			resetTimer(), removeColor();
 		}, 2000);
 		nextBtn.setAttribute("disabled", "");
 	}
 	cliccato = true;
 });
 
-// convertire in %
-
-function convertiInPercentuale(numero, totale) {
-	// ottiamo la percentuale
-	var percentuale = (numero / totale) * 100 + "%";
-	return percentuale;
-}
 
 //funzione endscreen
 function endScreen() {
-	let divRisposte = document.getElementById("contenitore-domande");
-	let endScreen = document.getElementById("endScreen");
-
 	//estetica
-	divRisposte.style.display = "none";
-	endScreen.style.display = "block";
+	endScreenEstetica();
 
 	//numero domande totale /numero risposte corrette
 
-	let testoRecapCorrette = document.getElementById("testoRecapCorrette");
-
-	testoRecapCorrette.textContent = " ";
-	testoRecapSbagliate.textContent = " ";
 	// % domande corrette
 	corrette100 = convertiInPercentuale(
 		arrayRisposteCorrette.length,
 		domande.length
 	);
-	let testoC100 = document.getElementById("testoCorrette");
-	console.log(testoC100);
 
-	testoC100.innerHTML = corrette100;
-
-	testoRecapCorrette.innerHTML +=
-		arrayRisposteCorrette.length + " / " + domande.length;
-
-	// % domande sbagliate
 	sbagliate100 = convertiInPercentuale(
 		arrayRisposteSbagliate.length,
 		domande.length
 	);
-	let testoS100 = document.getElementById("testoSbagliate");
-	console.log(testoS100);
+	//settiamo il testo %
+	percentualiTesto("testoRecapCorrette", "testoCorrette", corrette100);
 
-	testoS100.innerHTML = sbagliate100;
+	percentualiTesto("testoRecapSbagliate", "testoSbagliate", sbagliate100);
 
-	console.log(arrayRisposteSbagliate.length);
-
-	testoRecapSbagliate.innerHTML +=
-		arrayRisposteSbagliate.length + " / " + domande.length;
+	cambioTestoCiambella(corrette100);
 
 	creazioneCiambella(
 		arrayRisposteCorrette.length,
@@ -757,6 +725,12 @@ function endScreen() {
 	);
 }
 
+//funzioni endScreen
+function convertiInPercentuale(numero, totale) {
+	// ottiamo la percentuale
+	var percentuale = (numero / totale) * 100;
+	return percentuale;
+}
 function creazioneCiambella(data1, data2) {
 	var ctx = document.getElementById("myDoughnutChart").getContext("2d");
 
@@ -784,3 +758,25 @@ function creazioneCiambella(data1, data2) {
 		options: options,
 	});
 }
+function endScreenEstetica() {
+	let divRisposte = document.getElementById("contenitore-domande");
+	let endScreen = document.getElementById("endScreen");
+
+	divRisposte.style.display = "none";
+	endScreen.style.display = "block";
+}
+function percentualiTesto(idTestoRecap, idTesto, variabile100) {
+	//testo
+	let testoRecap = document.getElementById(idTestoRecap);
+	testoRecap.textContent = " ";
+	let testoC100 = document.getElementById(idTesto);
+	testoC100.innerHTML = variabile100 + "%";
+
+	testoRecap.innerHTML += arrayRisposteCorrette.length + " / " + domande.length;
+}
+
+// function cambioTestoCiambella(argomento) {
+// 	if (argomento < 60) {
+// 		console.log("dajje roma daje");
+// 	}
+// }
