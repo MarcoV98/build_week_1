@@ -388,12 +388,15 @@ function runTimer(timerElement) {
 }
 
 function resetTimer() {
-	timeLeft = 60;
+if(!gameOver){
+  timeLeft = 60;
 	runTimer(document.querySelector(".timer"));
 	questionNumber();
 	nextQuestion(domande);
 	cliccato = false;
 }
+}
+
 
 function questionNumber() {
 	return counter++;
