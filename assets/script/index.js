@@ -6,7 +6,7 @@ window.onload = function() {
     var checkBox = document.getElementById('termsConditions');
     if (!checkBox.checked) {
       event.preventDefault();
-      alert('Devi accettare i termini e le condizioni prima di procedere.');
+      alert('Did you remember to agree to the terms?');
     }
   });
 
