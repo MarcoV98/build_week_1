@@ -3,22 +3,16 @@ let clicked=false;
 function moneta(){
   monetaImg = document.getElementById("moneta")
   if(clicked){
-    monetaImg.style.display="none"
+    monetaImg.style.opacity = 0
     return
   }
-  sound();
 
   clicked = true;
-  monetaImg.style.display = "inline"
+  monetaImg.style.opacity = 1
 
   testo = document.getElementById("contenitoreTesto")
-  testo.style.display="inline"
+  testo.style.opacity = 1;
 
-}
-
-function sound(){
-  let snd = new Audio('images/Mario_Coin_Sound_-_Sound_Effect_HD.mp3')
-  snd.play() 
 }
 
 
