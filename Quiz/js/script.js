@@ -695,7 +695,7 @@ nextBtn.addEventListener("click", function () {
 });
 
 
-//funzione endscreen
+////////////funzione endscreen
 function endScreen() {
 	//estetica
 	endScreenEstetica();
@@ -713,9 +713,9 @@ function endScreen() {
 		domande.length
 	);
 	//settiamo il testo %
-	percentualiTesto("testoRecapCorrette", "testoCorrette", corrette100);
+	percentualiTesto("testoRecapCorrette", "testoCorrette", corrette100, true);
 
-	percentualiTesto("testoRecapSbagliate", "testoSbagliate", sbagliate100);
+	percentualiTesto("testoRecapSbagliate", "testoSbagliate", sbagliate100, false);
 
 	cambioTestoCiambella(corrette100);
 
@@ -742,12 +742,13 @@ function creazioneCiambella(data1, data2) {
 					"#00ffff", // Color for the first segment
 					"#d20094", // Color for the second segment
 				],
+        borderWidth: 0,
 			},
 		],
 	};
 
 	var options = {
-		cutout: 190,
+		cutout: 145,
 		rotation: 35 * Math.PI,
 		responsive: false, // Set to true for a responsive chart
 	};
@@ -765,18 +766,22 @@ function endScreenEstetica() {
 	divRisposte.style.display = "none";
 	endScreen.style.display = "block";
 }
-function percentualiTesto(idTestoRecap, idTesto, variabile100) {
+function percentualiTesto(idTestoRecap, idTesto, variabile100,corrette) {
 	//testo
 	let testoRecap = document.getElementById(idTestoRecap);
 	testoRecap.textContent = " ";
 	let testoC100 = document.getElementById(idTesto);
 	testoC100.innerHTML = variabile100 + "%";
 
-	testoRecap.innerHTML += arrayRisposteCorrette.length + " / " + domande.length;
+  if(corrette){
+    testoRecap.innerHTML += arrayRisposteCorrette.length + " / " + domande.length + " questions";
+  }else{
+    testoRecap.innerHTML += arrayRisposteSbagliate.length + " / " + domande.length + " questions";
+  }
 }
-
-// function cambioTestoCiambella(argomento) {
-// 	if (argomento < 60) {
-// 		console.log("dajje roma daje");
-// 	}
-// }
+function cambioTestoCiambella(argomento){
+  if(argomento < 60){
+    myH3 = document.querySelector(".feed h3");
+    myH3.innerHTML = `Failed! <br> <span>You failed the exam.</span>`;
+  }
+}
