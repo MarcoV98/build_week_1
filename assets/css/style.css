@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
   
 body{
-    background: url(/FeedBack/assets/image/bg.jpg) center center/cover no-repeat fixed;
+    background: url(/assets/image/bg.jpg) center center/cover no-repeat fixed;
     font-family: 'Outfit', sans-serif;
 }
 

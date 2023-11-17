@@ -691,7 +691,7 @@ nextBtn.addEventListener("click", function () {
 	if (!cliccato) {
 		setTimeout(() => {
 			resetTimer(), removeColor();
-		}, 2000);
+		}, 1500);
 		nextBtn.setAttribute("disabled", "");
 	}
 	cliccato = true;
