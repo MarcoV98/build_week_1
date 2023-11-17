@@ -71,9 +71,8 @@ label {
 }
 
 #contatoreDomande {
-  margin-top: 2rem;
+  margin-top: 15rem;
   color: white;
-
 }
 
 #testoDomanda {
@@ -95,7 +94,7 @@ label {
   font-weight: bold;
   cursor: pointer;
   border-radius: 8%;
-  margin-top: 1rem;
+  margin-top: 4rem;
 }
 
 /* #counterStyle {
