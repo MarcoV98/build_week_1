@@ -16,7 +16,7 @@ h2{
 }
 
 
-#startBtn{
+#startBtn {
   padding: 1rem;
   background-color: #00ffff;
   border: transparent;
@@ -27,17 +27,16 @@ h2{
   cursor: pointer;
   border-radius: 8%;
   margin-top: 2rem;
-  margin-left: 100px;
 }
 
 /*js related stuff */
-#pre-start{
+#pre-start {
   display: block;
   width: 60%;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 35px;
+  margin-top: 6em;
 }
 
 #pre-start h2{
@@ -66,9 +65,8 @@ label {
   border-radius: 43px;
   transition: background-color 0.3s;
   margin: 0.5rem 1.8rem 1.3rem 1.8rem;
-  max-width: 30%;
-  min-width: 30%;
-  background-color: rgba(43,41,85, 0.6)
+  width: 30%;
+  background-color: rgba(43,41,85, 0.6);
 }
 
 #contatoreDomande {
