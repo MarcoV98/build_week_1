@@ -71,7 +71,7 @@ label {
 }
 
 #contatoreDomande {
-  margin-top: 4rem;
+  margin-top: 2rem;
   color: white;
 
 }
@@ -82,7 +82,7 @@ label {
   font-size: 3rem;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
 }
 
 #prossimaBtn {
@@ -95,7 +95,7 @@ label {
   font-weight: bold;
   cursor: pointer;
   border-radius: 8%;
-  margin-top: 4rem;
+  margin-top: 1rem;
 }
 
 /* #counterStyle {
@@ -120,6 +120,18 @@ label {
 
 #endScreen{
   display: none;
+}
+
+#sceltaDifficolta{
+  display: flex;
+  margin-bottom: 59px;
+}
+
+#sceltaDomande{
+  display: flex;
+  margin-bottom: 40px;
+  margin-top: 4rem;
+
 }
 
 #contenitore-domande{
