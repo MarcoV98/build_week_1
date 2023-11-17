@@ -271,7 +271,7 @@ const questions = [
 		question:
 			"If you could travel anywhere in the world, where would you go?",
 		correct_answer: "Japan",
-		incorrect_answers: ["Argentina", "South America", "Iceland"],
+		incorrect_answers: ["Argentina", "USA", "Iceland"],
 	},
 	{
 		category: "Science: Computers",
@@ -323,7 +323,7 @@ const questions = [
 		type: "multiple",
 		difficulty: "hard",
 		question:
-			"Who is the best starter Pokémon",
+			"Who is the best starter Pokémon?",
 		correct_answer: "Bulbasaur",
 		incorrect_answers: ["Charmander", "Squirtle", "Pikachu"],
 	},
