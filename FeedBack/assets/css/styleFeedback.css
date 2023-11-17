@@ -18,8 +18,12 @@ header img {
 
 main{
     text-align: center;
-    margin-top: 6rem;
+    margin-top: 4rem;
+}
 
+#contentWrapper {
+    display: flex;
+    flex-direction: column;
 }
 
 #title{
@@ -46,9 +50,6 @@ main{
 
 hr{
     display: none;
-    /* border: 1px solid #900080;
-    margin-left: 11rem;
-    margin-right: 11rem;*/
 }
 
 .bottoneContenitore{
@@ -62,7 +63,9 @@ hr{
 
 .bottone{
     width: 100%;
+    min-width: 100%;
     height: 100%;
+    max-height: 100%;
     background-color: #00ffff;
     border: transparent;
     box-shadow: 0px 0px 13px 4px #00ffff;
@@ -78,10 +81,7 @@ input:active {
         top:2px;
     }
 
-main{
-    display: flex;
-    flex-direction: column;
-}
+
 svg:hover path{
     fill: #00ffff;
     cursor: pointer;
@@ -90,4 +90,19 @@ svg:hover path{
 
 .cambioStelle{
     fill: #00ffff;
+}
+
+#thankyouFeedack {
+    background-color: rgb(128, 128, 128, 0.2);
+    border-radius: 5%;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3rem;
+    text-align: center; 
+    padding: 0.2rem 0 0.2rem 0;
+}
+
+#rateUs {
+    color: #00ffff
 }
