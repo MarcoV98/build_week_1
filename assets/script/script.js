@@ -557,9 +557,10 @@ function setBtn() {
 function counterText() {
 	//prendiamo il contatore domande e modifichiamo il testo in base alle domande
 	let questionCounter = document.getElementById("contatoreDomande");
-	questionCounter.textContent = "";
+	questionCounter.textContent = " ";
+  counterDomande = (counter)+1
 	//counter è il numero di domande attuali
-	questionCounter.innerHTML = "QUESTION: " + counter + "<span class='pink'>" + " / " + domande.length + "</span>";
+	questionCounter.innerHTML = "QUESTION: " + counterDomande + "<span class='pink'>" + " / " + domande.length + "</span>";
 }
 function setTestoDomanda(array) {
 	//settiamo  testo della domanda
