@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+body {
+    background: url(/UovoDiPasqua/assets/images/sfondo-di-super-mario-vbep44x7ca67u2vn.jpg);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+    font-family: 'VT323', monospace;
+}
+
+#cubo{
+    width: 95px;
+}
+
+#moneta{
+    width: 60px;
+    margin-right: 25px;
+
+}
+h1{
+    text-align: center;
+    font-size: 4rem;
+    line-height:1em;
+    color:rgb(205, 16, 16);
+    font-weight:bold;
+    text-shadow:0px 0px 0 rgb(5,84,64),1px 1px 0 rgb(-9,70,50),2px 2px 0 rgb(-24,55,35),3px 3px 0 rgb(-38,41,21),4px 4px 0 rgb(-52,27,7),5px 5px 0 rgb(-66,13,-7),6px 6px 0 rgb(-80,-1,-21),7px 7px 0 rgb(-95,-16,-36),8px 8px 0 rgb(-109,-30,-50),9px 9px 0 rgb(-123,-44,-64), 10px 10px 0 rgb(-137,-58,-78),11px 11px 10px rgba(0,0,0,0.7),11px 11px 1px rgba(0,0,0,0.5),0px 0px 10px rgba(0,0,0,.2);}
+
+h2{
+    text-align: center;
+    font-size: 2em;
+}
+
+#padre{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 31rem;
+}
