@@ -114,6 +114,10 @@ label {
   background-color: green;
 }
 
+.red{
+  background-color: red;
+}
+
 #endScreen{
   display: none;
 }
