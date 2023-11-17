@@ -473,7 +473,7 @@ function cambioColoreLabel(parentId) {
 ///////////// funzione creazione array in base alla difficoltà
 function preparazioneDomande(array) {
 	domandeDifficoltà = arrayDomandeDifficoltà(array);
-	return (domande = arrayDomandeEffettivo(domandeDifficoltà));
+	return (domande = arrayDomandeEffettivo(questions));
 }
 
 //funzioni preparazioneDomande
@@ -589,20 +589,26 @@ function shuffleArray(array) {
 }
 function setLabelsRisposte() {
 	// prendiamo arrayLabel
-	let labelRisposteArray = document.querySelectorAll(
+	let labelRisposteArray =Array.from(document.querySelectorAll(
 		"#contenitore-risposte label"
-	);
+	)) 
+
 	//array inputs (per length)
-	let inputs = document.querySelectorAll("#contenitore-risposte input");
+	let inputs = Array.from(document.querySelectorAll("#contenitore-risposte input")) ;
 
 	//aggiungere il testo delle risposte ai label
 	for (let i = 0; i < inputs.length; i++) {
+    console.log("sono qui")
+    labelRisposteArray[i].style.display = "inline-block";
+
 		labelRisposteArray[i].textContent = risposte[i];
-		if (labelRisposteArray[i].textContent.length === 0) {
+    console.log(labelRisposteArray[i].textContent.length)
+
+		if (labelRisposteArray[i].textContent.length == 0) {
 			labelRisposteArray[i].style.display = "none";
-		} else {
-			labelRisposteArray[i].style.display = "inlineBlock";
-		}
+      console.log("labelRisposteArray[i].style.display")
+		} 
+
 	}
 }
 //fine
@@ -774,7 +780,7 @@ function percentualiTesto(idTestoRecap, idTesto, variabile100,corrette) {
 	let testoRecap = document.getElementById(idTestoRecap);
 	testoRecap.textContent = " ";
 	let testoC100 = document.getElementById(idTesto);
-	testoC100.innerHTML = variabile100 + "%";
+	testoC100.innerHTML = parseInt(variabile100) + "%";
 
   if(corrette){
     testoRecap.innerHTML += arrayRisposteCorrette.length + " / " + domande.length + " questions";

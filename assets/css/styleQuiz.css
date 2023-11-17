@@ -44,10 +44,9 @@ h2{
   font-weight: 400;
   color: white;
   font-size: 75px;
-  margin-top: 13px;
+  margin-top: 10px;
   margin-bottom: 2rem;
 }
-
 
 input[type="radio"]{
   display:none;
