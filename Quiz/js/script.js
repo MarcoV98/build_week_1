@@ -559,7 +559,7 @@ function counterText() {
 	let questionCounter = document.getElementById("contatoreDomande");
 	questionCounter.textContent = "";
 	//counter è il numero di domande attuali
-	questionCounter.innerHTML = counter + " / " + domande.length;
+	questionCounter.innerHTML = "QUESTION: " + counter + "<span class='pink'>" + " / " + domande.length + "</span>";
 }
 function setTestoDomanda(array) {
 	//settiamo  testo della domanda
