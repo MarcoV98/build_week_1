@@ -397,7 +397,6 @@ if(!gameOver){
 }
 }
 
-
 function questionNumber() {
 	return counter++;
 }
